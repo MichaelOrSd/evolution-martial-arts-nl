@@ -1,12 +1,15 @@
 :root {
-  --color-primary: #07342a;
-  --color-accent: #388070;
-  --color-text: #1f2a2a;
-  --color-text-light: #4d5a5a;
-  --color-muted: #f2f7f5;
+  --color-primary: #050505;
+  --color-surface: #111111;
+  --color-surface-alt: #1a1a1a;
+  --color-accent: #f5c518;
+  --color-text: #f7f7f7;
+  --color-text-light: #c7c7c7;
+  --color-muted: #0b0b0b;
   --color-white: #ffffff;
-  --color-dark: #061b15;
-  --shadow-soft: 0 18px 40px rgba(7, 52, 42, 0.15);
+  --color-dark: #000000;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --hero-image: url('https://images.unsplash.com/photo-1526401485004-46910ecc8e51?auto=format&fit=crop&w=1600&q=80');
 }
 
 * {
@@ -21,7 +24,7 @@ body {
   margin: 0;
   font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--color-text);
-  background-color: var(--color-white);
+  background-color: var(--color-primary);
   line-height: 1.65;
 }
 
@@ -33,6 +36,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: underline;
+  color: var(--color-white);
 }
 
 img {
@@ -50,9 +54,9 @@ img {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  background: rgba(6, 27, 21, 0.9);
+  background: rgba(0, 0, 0, 0.92);
   color: var(--color-white);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(245, 197, 24, 0.2);
 }
 
 .site-header .container {
@@ -78,9 +82,10 @@ img {
   display: grid;
   place-items: center;
   background: var(--color-accent);
-  color: var(--color-white);
+  color: #111111;
   font-family: 'Oswald', sans-serif;
   font-size: 1.4rem;
+  text-shadow: none;
 }
 
 .brand-text {
@@ -104,7 +109,7 @@ img {
 
 .nav-toggle:hover,
 .nav-toggle:focus {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(245, 197, 24, 0.15);
 }
 
 .nav-toggle-bar,
@@ -149,7 +154,7 @@ img {
 .site-nav {
   position: absolute;
   inset: calc(100% + 1px) 0 auto;
-  background: rgba(6, 27, 21, 0.96);
+  background: rgba(5, 5, 5, 0.96);
   backdrop-filter: blur(12px);
   transform-origin: top;
   transform: scaleY(0);
@@ -170,11 +175,13 @@ img {
   color: var(--color-white);
   font-weight: 500;
   border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .site-nav a:hover,
 .site-nav a:focus {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -215,29 +222,22 @@ img {
 .hero {
   position: relative;
   color: var(--color-white);
-  padding-block: clamp(4rem, 10vw, 8rem);
-  background: linear-gradient(135deg, #061b15 10%, #0a2a22 55%, #114237 100%);
+  padding-block: clamp(4.5rem, 12vw, 8.5rem);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), var(--hero-image) center/cover no-repeat;
   overflow: hidden;
 }
 
-.hero::before,
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
+  background: linear-gradient(130deg, rgba(0, 0, 0, 0.85) 15%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.85) 90%);
   pointer-events: none;
 }
 
-.hero::before {
-  background:
-    radial-gradient(120% 120% at 0% 20%, rgba(56, 128, 112, 0.4), rgba(6, 27, 21, 0) 65%),
-    radial-gradient(90% 90% at 90% 10%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 70%);
-  mix-blend-mode: screen;
-  opacity: 0.75;
-}
-
-.hero::after {
-  background: linear-gradient(120deg, rgba(6, 27, 21, 0.15), rgba(6, 27, 21, 0.75));
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
@@ -246,18 +246,19 @@ img {
   align-content: center;
   gap: 1.2rem;
   color: var(--color-white);
+  max-width: 640px;
   z-index: 1;
 }
 
 .hero h1 {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(2.6rem, 4.2vw, 3.6rem);
+  letter-spacing: 0.08em;
   margin: 0;
 }
 
 .hero p {
-  max-width: 560px;
+  max-width: 620px;
   font-size: 1.05rem;
   margin: 0;
 }
@@ -284,7 +285,7 @@ img {
 
 .button.primary {
   background: var(--color-accent);
-  color: var(--color-white);
+  color: #111111;
   box-shadow: var(--shadow-soft);
 }
 
@@ -300,15 +301,15 @@ img {
 
 .button.outline:hover,
 .button.outline:focus {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(245, 197, 24, 0.15);
 }
 
 .ribbon {
   background: var(--color-accent);
-  color: var(--color-white);
+  color: #111111;
   padding: 0.85rem 0;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .section {
@@ -316,7 +317,7 @@ img {
 }
 
 .section--alt {
-  background: var(--color-muted);
+  background: var(--color-surface-alt);
 }
 
 .section-header {
@@ -349,11 +350,11 @@ img {
 }
 
 .card {
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: 18px;
   padding: 2rem;
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(7, 52, 42, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.12);
 }
 
 .card h3 {
@@ -361,6 +362,7 @@ img {
   font-size: 1.5rem;
   margin-top: 0;
   margin-bottom: 0.75rem;
+  color: var(--color-white);
 }
 
 .card p {
@@ -375,6 +377,53 @@ img {
   color: var(--color-text-light);
 }
 
+.events {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 960px) {
+  .events {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.event-card {
+  background: var(--color-surface);
+  border-radius: 18px;
+  padding: 1.8rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(245, 197, 24, 0.12);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.event-date {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+.event-card h3 {
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--color-white);
+}
+
+.event-card p {
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+.event-card .event-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
 .schedule-grid {
   display: grid;
   gap: 0.75rem;
@@ -387,20 +436,23 @@ img {
   gap: 1rem;
   padding: 1rem 1.2rem;
   border-radius: 14px;
-  background: var(--color-white);
+  background: var(--color-surface);
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(245, 197, 24, 0.1);
 }
 
 .schedule-heading {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: var(--color-accent);
+  color: #111111;
+  border: none;
 }
 
 .schedule-row span:first-child {
   font-weight: 600;
+  color: var(--color-white);
 }
 
 .coaches {
@@ -417,19 +469,22 @@ img {
 .coach {
   padding: 2rem;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(7, 52, 42, 0.95), rgba(56, 128, 112, 0.85));
+  background: linear-gradient(135deg, rgba(245, 197, 24, 0.22), rgba(17, 17, 17, 0.8));
   color: var(--color-white);
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(245, 197, 24, 0.18);
 }
 
 .coach h3 {
   font-family: 'Oswald', sans-serif;
   margin-top: 0;
   font-size: 1.4rem;
+  color: var(--color-white);
 }
 
 .coach p {
   margin: 0.5rem 0 0;
+  color: var(--color-text-light);
 }
 
 .pricing {
@@ -445,31 +500,33 @@ img {
 }
 
 .pricing-card {
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: 18px;
   padding: 2.4rem 2rem;
   text-align: center;
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(7, 52, 42, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.12);
   display: grid;
   gap: 1rem;
 }
 
 .pricing-card--highlight {
-  background: linear-gradient(140deg, rgba(56, 128, 112, 0.16), rgba(7, 52, 42, 0.12));
-  border-color: rgba(7, 52, 42, 0.18);
+  background: linear-gradient(145deg, rgba(245, 197, 24, 0.25), rgba(17, 17, 17, 0.85));
+  border-color: rgba(245, 197, 24, 0.35);
 }
 
 .pricing-card h3 {
   font-family: 'Oswald', sans-serif;
   font-size: 1.5rem;
   margin: 0;
+  color: var(--color-white);
 }
 
 .price {
   font-size: 2.4rem;
   font-weight: 700;
   margin: 0;
+  color: var(--color-white);
 }
 
 .price span {
@@ -496,7 +553,7 @@ img {
 }
 
 .testimonials {
-  background: radial-gradient(circle at top left, rgba(56, 128, 112, 0.2), rgba(7, 52, 42, 0.85));
+  background: radial-gradient(circle at top left, rgba(245, 197, 24, 0.18), rgba(0, 0, 0, 0.9));
   color: var(--color-white);
   padding: clamp(3.5rem, 8vw, 5rem) 0;
 }
@@ -513,11 +570,12 @@ img {
 }
 
 .quote {
-  background: rgba(6, 27, 21, 0.65);
+  background: rgba(17, 17, 17, 0.85);
   border-radius: 18px;
   padding: 1.75rem;
   box-shadow: var(--shadow-soft);
   position: relative;
+  border: 1px solid rgba(245, 197, 24, 0.16);
 }
 
 .quote::before {
@@ -527,18 +585,19 @@ img {
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 3rem;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(245, 197, 24, 0.35);
 }
 
 .quote p {
   margin: 0 0 1rem;
   font-size: 1.1rem;
+  color: var(--color-white);
 }
 
 .quote cite {
   font-style: normal;
   font-weight: 600;
-  opacity: 0.8;
+  color: var(--color-text-light);
 }
 
 .contact {
@@ -563,11 +622,11 @@ img {
 }
 
 .contact-form {
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: 18px;
   padding: 2rem;
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(7, 52, 42, 0.08);
+  border: 1px solid rgba(245, 197, 24, 0.12);
   display: grid;
   gap: 1.1rem;
 }
@@ -579,7 +638,7 @@ img {
 
 label {
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-white);
 }
 
 input,
@@ -588,9 +647,15 @@ textarea {
   font: inherit;
   padding: 0.65rem 0.75rem;
   border-radius: 10px;
-  border: 1px solid rgba(7, 52, 42, 0.2);
-  background: var(--color-muted);
+  border: 1px solid rgba(245, 197, 24, 0.18);
+  background: var(--color-surface-alt);
+  color: var(--color-white);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 input:focus,
@@ -598,7 +663,7 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(56, 128, 112, 0.2);
+  box-shadow: 0 0 0 4px rgba(245, 197, 24, 0.18);
 }
 
 textarea {
@@ -644,6 +709,11 @@ textarea {
 
 .site-footer a {
   color: inherit;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: var(--color-accent);
 }
 
 .sr-only {
