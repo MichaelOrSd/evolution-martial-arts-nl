@@ -56,7 +56,7 @@
 
       <section class="ribbon" aria-live="polite">
         <div class="container">
-          <p>Got a question? E-mail us <a href="mailto:info@evolutionmartialartsnl.com">info@evolutionmartialartsnl.com</a>.</p>
+          <p>Got a question? E-mail us <a id="hero-email" href="mailto:info@evolutionmartialartsnl.com">info@evolutionmartialartsnl.com</a>.</p>
         </div>
       </section>
 
@@ -104,55 +104,99 @@
             <h2 id="schedule-title">Weekly schedule</h2>
             <p>Drop in for your first class 15 minutes early so we can show you around the facility.</p>
           </header>
-          <div class="schedule-grid" role="table" aria-label="Weekly class schedule">
-            <div class="schedule-heading" role="row">
-              <span role="columnheader">Day</span>
-              <!-- <span role="columnheader">Class 1</span>
-              <span role="columnheader">Class 2</span>
-              <span role="columnheader">Class 3</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Monday</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-              <span>7 – 8 PM - Adult Gi</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Tuesday</span>
-              <span>6 – 7 PM - Kickboxing</span>
-              <span>7 – 8 PM - Adult No-Gi</span>
-              <span>8 – 9 PM - Women's Jiu-Jitsu</span>
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Wednesday</span>
-              <span>5:30 – 6:15 PM - Kids Ages: 4–8</span>
-              <span>6:30 – 7:15 PM - Kids Ages: 9–14</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Thursday</span>
-              <span>6 – 7 PM - Kickboxing</span>
-              <span>7 – 8 PM - Adult No-Gi</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Friday</span>
-              <span class="schedule-empty">No classes</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Saturday</span>
-              <span>11 AM – 12 PM - Adult Gi</span>
-              <span>12 PM – 1 PM - MMA Comp. Team</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
-            <div class="schedule-row" role="row">
-              <span role="rowheader">Sunday</span>
-              <span>11 AM – 12 PM -  Kickboxing</span>
-              <span>12 PM – 1 PM -  Open Mat</span>
-              <!-- <span class="schedule-empty" aria-label="No class scheduled">—</span> -->
-            </div>
+          <div class="schedule-week" role="list" aria-label="Weekly class schedule">
+            <article class="schedule-day" role="listitem">
+              <h3>Monday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="19:00">7 – 8 PM</time>
+                  <span>Adult Gi</span>
+                </li>
+                <li class="schedule-class schedule-class--empty">—</li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Tuesday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="18:00">6 – 7 PM</time>
+                  <span>Kickboxing</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="19:00">7 – 8 PM</time>
+                  <span>Adult No-Gi</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="20:00">8 – 9 PM</time>
+                  <span>Women's Jiu-Jitsu</span>
+                </li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Wednesday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="17:30">5:30 – 6:15 PM</time>
+                  <span>Kids Ages 4–8</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="18:30">6:30 – 7:15 PM</time>
+                  <span>Kids Ages 9–14</span>
+                </li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Thursday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="18:00">6 – 7 PM</time>
+                  <span>Kickboxing</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="19:00">7 – 8 PM</time>
+                  <span>Adult No-Gi</span>
+                </li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Friday</h3>
+              <ul>
+                <li class="schedule-class schedule-class--empty">No classes scheduled</li>
+                <li class="schedule-class schedule-class--empty">—</li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Saturday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="11:00">11 AM – 12 PM</time>
+                  <span>Adult Gi</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="12:00">12 PM – 1 PM</time>
+                  <span>MMA Comp. Team</span>
+                </li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
+            <article class="schedule-day" role="listitem">
+              <h3>Sunday</h3>
+              <ul>
+                <li class="schedule-class">
+                  <time datetime="11:00">11 AM – 12 PM</time>
+                  <span>Kickboxing</span>
+                </li>
+                <li class="schedule-class">
+                  <time datetime="12:00">12 PM – 1 PM</time>
+                  <span>Open Mat</span>
+                </li>
+                <li class="schedule-class schedule-class--empty">—</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
