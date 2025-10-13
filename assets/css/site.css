@@ -432,7 +432,7 @@ img {
 .schedule-heading,
 .schedule-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   padding: 1rem 1.2rem;
   border-radius: 14px;
@@ -453,6 +453,11 @@ img {
 .schedule-row span:first-child {
   font-weight: 600;
   color: var(--color-white);
+}
+
+.schedule-empty {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
 }
 
 .coaches {
