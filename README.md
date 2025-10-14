@@ -27,7 +27,7 @@ Then visit <http://localhost:8080>.
 2. Connect your GitHub account when prompted and authorize Amplify to access the repository.
 3. Select the repository and choose the **main** branch as the production branch so that any push to `main` triggers a deploy.
 4. Enable **Preview builds** so pull requests (for example `codex/clean-weebly-export`) get their own preview URLs.
-5. Amplify detects `amplify.yml` automatically. Confirm the artifact base directory is the repo root (`/`) and that no additional build commands are required.
+5. Amplify detects `amplify.yml` automatically. Confirm the artifact base directory is the repo root (`.`) and that no additional build commands are required.
 6. Complete the wizard to trigger the initial deploy.
 
 ## Custom Domain via Route 53

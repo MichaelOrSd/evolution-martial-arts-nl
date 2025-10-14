@@ -1,7 +1,6 @@
 version: 1
 applications:
-  - appRoot: /
-    frontend:
+  - frontend:
       phases:
         preBuild:
           commands: []
@@ -9,7 +8,7 @@ applications:
           commands:
             - echo "Static site: no build step required"
       artifacts:
-        baseDirectory: /
+        baseDirectory: .
         files:
           - '**/*'
       cache:
