@@ -312,15 +312,15 @@ img {
   font-weight: 600;
 }
 
-#hero-email {
-  color: black;
-  font-weight: 700;
+/* Make the hero email link black in all states */
+#hero-email,
+#hero-email:link,
+#hero-email:visited,
+#hero-email:hover,
+#hero-email:active {
+  color: #000 !important;
   text-decoration: none;
-}
-
-#hero-email:hover {
-  color: #2c3e91; /* Example blue accent */
-  text-decoration: underline;
+  font-weight: 700;
 }
 
 .section {
