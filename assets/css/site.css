@@ -318,6 +318,11 @@ img {
   text-decoration: none;
 }
 
+#hero-email:visited {
+  color: #111111;
+  text-decoration: none;
+}
+
 #hero-email:hover,
 #hero-email:focus {
   color: #111111;
