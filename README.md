@@ -40,3 +40,52 @@ Then visit <http://localhost:8080>.
 6. (Optional) Set up a canonical redirect (e.g., `www` → apex) in **Rewrites and redirects** after DNS finishes propagating.
 
 Refer to `docs/AMPLIFY-REDIRECTS.md` for the rules to configure in the Amplify console.
+
+## Contact form with Amazon SES
+
+The contact form is wired to call a JSON endpoint that relays submissions to Amazon Simple Email Service (SES). To finish the
+integration:
+
+1. Create an AWS Lambda function (Node.js 18+) with permissions to call `ses:SendEmail`. A minimal handler is shown below.
+2. Expose the function with Amazon API Gateway (HTTP API). Enable CORS for `POST` requests from your domain and, optionally,
+   protect the route with an API key.
+3. Verify the sending and receiving email addresses (or the entire domain) in SES and move the account out of the sandbox if
+   you need to email arbitrary recipients.
+4. Update the `data-endpoint` attribute on the `<form class="contact-form">` element in `index.html` with your API Gateway
+   invoke URL. If you enabled an API key, place it in the `data-api-key` attribute.
+5. Commit and deploy so the static site can call the new endpoint.
+
+Example Lambda handler:
+
+```js
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+
+const ses = new SESClient({ region: process.env.AWS_REGION });
+const RECEIVER = process.env.CONTACT_RECEIVER;
+const SENDER = process.env.CONTACT_SENDER;
+
+export const handler = async (event) => {
+  const payload = JSON.parse(event.body || '{}');
+
+  const email = new SendEmailCommand({
+    Source: SENDER,
+    Destination: { ToAddresses: [RECEIVER] },
+    ReplyToAddresses: payload.email ? [payload.email] : [],
+    Message: {
+      Subject: { Data: `New website inquiry from ${payload.name || 'Unknown'}` },
+      Body: {
+        Text: {
+          Data: `Program: ${payload.program}\nEmail: ${payload.email}\nMessage: ${payload.message}\nSubmitted: ${payload.submittedAt}`,
+        },
+      },
+    },
+  });
+
+  await ses.send(email);
+
+  return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ ok: true }) };
+};
+```
+
+For Amplify Hosting you can inject the API details without editing HTML by using environment variables and a post-deploy script
+if desired. The default deployment leaves a placeholder URL so the page loads even before the backend is ready.

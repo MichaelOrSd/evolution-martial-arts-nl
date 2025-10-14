@@ -57,4 +57,87 @@
       observer.observe(el);
     });
   }
+
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    const endpoint = contactForm.dataset.endpoint || '';
+    const apiKey = contactForm.dataset.apiKey || '';
+    const statusEl = contactForm.querySelector('.form-status');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    const isConfigured = endpoint && !endpoint.includes('your-api-id');
+
+    const setStatus = (message, state) => {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      if (state) {
+        statusEl.dataset.state = state;
+      } else {
+        delete statusEl.dataset.state;
+      }
+    };
+
+    if (!isConfigured) {
+      setStatus('Contact form configuration is incomplete.', 'error');
+    }
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!isConfigured) {
+        setStatus('Contact form configuration is incomplete.', 'error');
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+      const payload = {
+        name: (formData.get('name') || '').toString().trim(),
+        email: (formData.get('email') || '').toString().trim(),
+        program: (formData.get('program') || '').toString(),
+        message: (formData.get('message') || '').toString().trim(),
+        submittedAt: new Date().toISOString(),
+      };
+
+      if (!payload.name || !payload.email || !payload.message) {
+        setStatus('Please complete all required fields before sending.', 'error');
+        return;
+      }
+
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+
+      if (apiKey) {
+        headers['x-api-key'] = apiKey;
+      }
+
+      setStatus('Sending message…', 'sending');
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || 'Request failed');
+        }
+
+        setStatus('Thanks! Your message has been sent.', 'success');
+        contactForm.reset();
+      } catch (error) {
+        console.error('Contact form submission failed', error);
+        setStatus('Something went wrong while sending your message. Please try again.', 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  }
 })();

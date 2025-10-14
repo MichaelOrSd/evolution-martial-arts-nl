@@ -8,6 +8,8 @@
   --color-muted: #0b0b0b;
   --color-white: #ffffff;
   --color-dark: #000000;
+  --color-success: #4ade80;
+  --color-error: #f87171;
   --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
   --hero-image: url('https://evolutionbjj.s3.ca-central-1.amazonaws.com/S3+Photos/Evolution-BJJ-Logo-St-John_webImage16-9.png');
 }
@@ -726,6 +728,22 @@ textarea {
   margin: 0;
   font-size: 0.85rem;
   color: var(--color-text-light);
+}
+
+.form-status {
+  min-height: 1.2rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  transition: color 0.2s ease;
+}
+
+.form-status[data-state='success'] {
+  color: var(--color-success);
+}
+
+.form-status[data-state='error'] {
+  color: var(--color-error);
 }
 
 .map iframe {
