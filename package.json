@@ -1,0 +1,17 @@
+{
+  "name": "evolution-martial-arts-nl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:css",
+    "build:css": "lessc --global-var='site-accent-color=#388070' --global-var='site-primary-color=#07342a' styles/main.less styles/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "less": "^4.4.2"
+  }
+}

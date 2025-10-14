@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evolution Martial Arts | Amsterdam, NL</title>
+  <meta
+    name="description"
+    content="Evolution Martial Arts in Amsterdam offers Brazilian Jiu-Jitsu, Kickboxing, and fitness classes for adults and kids."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Evolution Martial Arts</div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#testimonials">Members</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Build Confidence. Sharpen Skills. Join Our Martial Arts Family.</h1>
+    <p>
+      Evolution Martial Arts provides world-class martial arts instruction in the heart of Amsterdam.
+      Train with professional coaches, achieve your fitness goals, and become part of a supportive community.
+    </p>
+    <div class="cta-group">
+      <a class="button primary" href="#contact">Book a Free Trial</a>
+      <a class="button secondary" href="#schedule">View Class Schedule</a>
+    </div>
+  </section>
+
+  <section id="programs" class="section">
+    <div class="container">
+      <h2>Programs for Every Student</h2>
+      <div class="grid programs">
+        <article class="card">
+          <h3>Brazilian Jiu-Jitsu</h3>
+          <p>
+            Technical and strategy-driven classes for all levels. Learn submissions, escapes, and positional
+            control from experienced black belts.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Kickboxing &amp; Muay Thai</h3>
+          <p>
+            Develop striking power, speed, and balance through structured pad work, bag drills, and sparring
+            opportunities.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Kids Martial Arts</h3>
+          <p>
+            Fun and focused sessions that build discipline, respect, and coordination while keeping young
+            athletes engaged.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Functional Fitness</h3>
+          <p>
+            High-energy conditioning classes that improve strength, mobility, and endurance for all martial arts
+            disciplines.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="section">
+    <div class="container">
+      <h2>Weekly Schedule Highlights</h2>
+      <p>
+        New to the academy? Drop in for any beginners class or contact us for a personalised training plan.
+      </p>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Class</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monday</td>
+            <td>Fundamentals BJJ</td>
+            <td>18:30 &ndash; 19:45</td>
+          </tr>
+          <tr>
+            <td>Tuesday</td>
+            <td>Kickboxing All Levels</td>
+            <td>19:00 &ndash; 20:00</td>
+          </tr>
+          <tr>
+            <td>Wednesday</td>
+            <td>No-Gi Grappling</td>
+            <td>20:00 &ndash; 21:15</td>
+          </tr>
+          <tr>
+            <td>Thursday</td>
+            <td>Kids Martial Arts</td>
+            <td>17:00 &ndash; 17:50</td>
+          </tr>
+          <tr>
+            <td>Saturday</td>
+            <td>Competition Team Practice</td>
+            <td>11:00 &ndash; 12:30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2>What Members Say</h2>
+      <blockquote>
+        &ldquo;Evolution Martial Arts has completely changed my training. The coaches are invested in every student and the
+        community is incredibly welcoming.&rdquo;
+      </blockquote>
+      <cite>&mdash; Sofia, BJJ Blue Belt</cite>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Visit the Academy</h2>
+      <div class="contact-card">
+        <div>
+          <h3>Location</h3>
+          <p>Evolution Martial Arts</p>
+          <p>Johan Cruijff Boulevard 31</p>
+          <p>Amsterdam, Netherlands</p>
+        </div>
+        <div>
+          <h3>Get in Touch</h3>
+          <p><strong>Email:</strong> <a href="mailto:train@evolutionma.nl">train@evolutionma.nl</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+31201234567">+31 (0)20 123 4567</a></p>
+          <p><strong>Instagram:</strong> <a href="https://instagram.com/evolutionma" target="_blank" rel="noreferrer">@evolutionma</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Evolution Martial Arts. All rights reserved.</p>
+      <p>Crafted with dedication for the Amsterdam martial arts community.</p>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
