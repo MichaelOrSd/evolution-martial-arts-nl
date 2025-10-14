@@ -313,13 +313,19 @@ img {
 }
 
 #hero-email {
-  color: black;
+  color: #111111;
   font-weight: 700;
   text-decoration: none;
 }
 
-#hero-email:hover {
-  color: #2c3e91; /* Example blue accent */
+#hero-email:visited {
+  color: #111111;
+  text-decoration: none;
+}
+
+#hero-email:hover,
+#hero-email:focus {
+  color: #111111;
   text-decoration: underline;
 }
 
