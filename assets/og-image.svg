@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Evolution Martial Arts NL</title>
+  <desc id="desc">Social preview graphic with brand colors and tagline.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061b15" />
+      <stop offset="55%" stop-color="#0a2a22" />
+      <stop offset="100%" stop-color="#114237" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#388070" stop-opacity="0.55" />
+      <stop offset="75%" stop-color="#388070" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow2" cx="90%" cy="10%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12" />
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect width="1200" height="630" fill="url(#glow2)" />
+  <g fill="#ffffff" font-family="Oswald, 'Arial Narrow', sans-serif">
+    <text x="96" y="190" font-size="84" letter-spacing="4">EVOLUTION</text>
+    <text x="96" y="280" font-size="84" letter-spacing="4">MARTIAL ARTS</text>
+    <text x="96" y="360" font-size="84" letter-spacing="4">NL</text>
+  </g>
+  <g fill="#f0f5f4" font-family="Lato, 'Helvetica Neue', sans-serif" font-size="36">
+    <text x="96" y="440">Brazilian Jiu-Jitsu · Muay Thai · Functional Training</text>
+    <text x="96" y="500">Noordwijk, Netherlands</text>
+  </g>
+</svg>
