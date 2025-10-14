@@ -9,7 +9,7 @@
   --color-white: #ffffff;
   --color-dark: #000000;
   --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
-  --hero-image: url('https://images.unsplash.com/photo-1526401485004-46910ecc8e51?auto=format&fit=crop&w=1600&q=80');
+  --hero-image: url('https://evolutionbjj.s3.ca-central-1.amazonaws.com/S3+Photos/Evolution-BJJ-Logo-St-John_webImage16-9.png');
 }
 
 * {
@@ -223,7 +223,7 @@ img {
   position: relative;
   color: var(--color-white);
   padding-block: clamp(4.5rem, 12vw, 8.5rem);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), var(--hero-image) center/cover no-repeat;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.72)), var(--hero-image) center/cover no-repeat;
   overflow: hidden;
 }
 
