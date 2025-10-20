@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = carousel.querySelector('[data-carousel-track]');
     const slides = track ? Array.from(track.children) : [];
     const dotsContainer = carousel.querySelector('[data-carousel-dots]');
+    const prevButton = carousel.querySelector('[data-carousel-prev]');
+    const nextButton = carousel.querySelector('[data-carousel-next]');
 
     if (!track || slides.length === 0 || !dotsContainer) {
       return;
@@ -24,6 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return Math.max(0, slides.length - perView);
     };
 
+    const updateArrows = () => {
+      const maxIndex = getMaxIndex();
+
+      if (prevButton) {
+        const isDisabled = currentIndex <= 0 || maxIndex === 0;
+        prevButton.disabled = isDisabled;
+        prevButton.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+      }
+
+      if (nextButton) {
+        const isDisabled = currentIndex >= maxIndex || maxIndex === 0;
+        nextButton.disabled = isDisabled;
+        nextButton.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+      }
+    };
+
     const updateDots = () => {
       const dots = Array.from(dotsContainer.children);
       dots.forEach((dot, index) => {
@@ -41,10 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = maxIndex;
       }
 
+      if (currentIndex < 0) {
+        currentIndex = 0;
+      }
+
       const activeSlide = slides[currentIndex];
       const offset = activeSlide ? activeSlide.offsetLeft : 0;
       track.style.transform = `translateX(-${offset}px)`;
       updateDots();
+      updateArrows();
     };
 
     const createDots = () => {
@@ -71,6 +94,24 @@ document.addEventListener('DOMContentLoaded', () => {
       createDots();
       update();
     };
+
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex -= 1;
+          update();
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        if (currentIndex < getMaxIndex()) {
+          currentIndex += 1;
+          update();
+        }
+      });
+    }
 
     createDots();
     update();

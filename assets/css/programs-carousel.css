@@ -5,6 +5,57 @@
   margin-top: 2rem;
 }
 
+.programs-carousel .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(245, 197, 24, 0.45);
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.9);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.programs-carousel.is-ready .carousel-arrow {
+  display: inline-flex;
+}
+
+.programs-carousel .carousel-arrow:hover,
+.programs-carousel .carousel-arrow:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  outline: none;
+}
+
+.programs-carousel .carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.programs-carousel .carousel-arrow[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.programs-carousel .carousel-arrow--prev {
+  left: 0.5rem;
+}
+
+.programs-carousel .carousel-arrow--next {
+  right: 0.5rem;
+}
+
+.programs-carousel .carousel-arrow-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
 .programs-carousel .carousel-viewport {
   overflow-x: auto;
   scroll-behavior: smooth;
