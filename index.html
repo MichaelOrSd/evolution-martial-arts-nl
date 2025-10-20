@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/site.min.css" />
+    <link rel="stylesheet" href="assets/css/programs-carousel.css" />
   </head>
   <body>
     <header class="site-header" id="top">
@@ -71,27 +72,32 @@
             <h2 id="programs-title">Programs for every fighter</h2>
             <p>Whether you are stepping on the mats for the first time or sharpening competition skills, our training blocks meet you where you are.</p>
           </header>
-          <div class="cards">
-            <article class="card">
-              <h3>Gi Jiu Jitsu Adult (14 +)</h3>
-              <p>Designed to provide students with a solid base in Brazilian jiu-jitsu through theories, techniques, and principles. Our classes incorporate both fundamentals and drills designed to show students how to use the fluidity of movement, transitions, and offensive/defensive strategies to improve their game. You can equate these maneuvers to a form of kinetic chess where a submission hold is the equivalent of checkmate.</p>
-            </article>
-            <article class="card">
-              <h3>Kids Jiu Jitsu</h3>
-              <p>Our Brazilian jiu-jitsu Youth program will help build self-confidence, respect, courage, discipline, sportsmanship, concentration, and coordination. The techniques taught will show students how to defend themselves through the use of leverage and angles. Our instructors teach effective self-defense while making each class challenging, technical and fun. Through martial arts your child will develop skills that will last him/her a lifetime.</p>
-            </article>
-            <article class="card">
-              <h3>No Gi Jiu Jitsu (14 +)</h3>
-              <p>Our no gi jiu-jitsu program focuses on learning and applying the fundamentals of Brazilian jiu-jitsu without the traditional gi (kimono). Also known as “Submission Wrestling” this program is often the base for students preparing to compete in Mixed Martial Arts (MMA). Our no -gi program is a mix of BJJ, Freestyle Wrestling, Greco Roman Wrestling, as well as some Japanese styles.</p>
-            </article>
-            <article class="card">
-              <h3>Kickboxing (14 +)</h3>
-              <p>Based on a Dutch style of kickboxing, our programs are highly technique based. Classes are strongly focused on establishing foundational skills and conditioning. Open to both competitive and non-competitive students, our kickboxing program is approachable at any fitness level and promises to provide a full body workout!</p>
-            </article>
-            <article class="card">
-              <h3>Randori</h3>
-              <p>Free hour of rolling (real time sparring in jiu jitsu) or can be used as drill time with a training partner.</p>
-            </article>
+          <div class="programs-carousel" data-carousel>
+            <div class="carousel-viewport" data-carousel-viewport>
+              <div class="carousel-track" data-carousel-track>
+                <article class="card carousel-slide">
+                  <h3>Gi Jiu Jitsu Adult (14 +)</h3>
+                  <p>Designed to provide students with a solid base in Brazilian jiu-jitsu through theories, techniques, and principles. Our classes incorporate both fundamentals and drills designed to show students how to use the fluidity of movement, transitions, and offensive/defensive strategies to improve their game. You can equate these maneuvers to a form of kinetic chess where a submission hold is the equivalent of checkmate.</p>
+                </article>
+                <article class="card carousel-slide">
+                  <h3>Kids Jiu Jitsu</h3>
+                  <p>Our Brazilian jiu-jitsu Youth program will help build self-confidence, respect, courage, discipline, sportsmanship, concentration, and coordination. The techniques taught will show students how to defend themselves through the use of leverage and angles. Our instructors teach effective self-defense while making each class challenging, technical and fun. Through martial arts your child will develop skills that will last him/her a lifetime.</p>
+                </article>
+                <article class="card carousel-slide">
+                  <h3>No Gi Jiu Jitsu (14 +)</h3>
+                  <p>Our no gi jiu-jitsu program focuses on learning and applying the fundamentals of Brazilian jiu-jitsu without the traditional gi (kimono). Also known as “Submission Wrestling” this program is often the base for students preparing to compete in Mixed Martial Arts (MMA). Our no -gi program is a mix of BJJ, Freestyle Wrestling, Greco Roman Wrestling, as well as some Japanese styles.</p>
+                </article>
+                <article class="card carousel-slide">
+                  <h3>Kickboxing (14 +)</h3>
+                  <p>Based on a Dutch style of kickboxing, our programs are highly technique based. Classes are strongly focused on establishing foundational skills and conditioning. Open to both competitive and non-competitive students, our kickboxing program is approachable at any fitness level and promises to provide a full body workout!</p>
+                </article>
+                <article class="card carousel-slide">
+                  <h3>Randori</h3>
+                  <p>Free hour of rolling (real time sparring in jiu jitsu) or can be used as drill time with a training partner.</p>
+                </article>
+              </div>
+            </div>
+            <div class="carousel-dots" data-carousel-dots aria-label="Programs carousel navigation"></div>
           </div>
         </div>
       </section>
@@ -404,6 +410,7 @@
       </div>
     </footer>
 
+    <script src="assets/js/programs-carousel.js" defer></script>
     <script src="assets/js/site.min.js" defer></script>
   </body>
 </html>
