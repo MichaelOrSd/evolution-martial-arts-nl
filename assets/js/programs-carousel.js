@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsContainer = carousel.querySelector('[data-carousel-dots]');
     const prevButton = carousel.querySelector('[data-carousel-prev]');
     const nextButton = carousel.querySelector('[data-carousel-next]');
+    const itemLabel = carousel.dataset.carouselLabel || 'items';
 
     if (!track || slides.length === 0 || !dotsContainer) {
       return;
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.className = 'carousel-dot';
         const start = index * perView + 1;
         const end = Math.min(slides.length, start + perView - 1);
-        button.setAttribute('aria-label', `Show programs ${start} to ${end}`);
+        button.setAttribute('aria-label', `Show ${itemLabel} ${start} to ${end}`);
         button.addEventListener('click', () => {
           currentIndex = index;
           update();

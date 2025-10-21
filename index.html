@@ -72,7 +72,7 @@
             <h2 id="programs-title">Programs for every fighter</h2>
             <p>Whether you are stepping on the mats for the first time or sharpening competition skills, our training blocks meet you where you are.</p>
           </header>
-          <div class="programs-carousel" data-carousel>
+          <div class="programs-carousel carousel" data-carousel data-carousel-label="programs">
             <button
               class="carousel-arrow carousel-arrow--prev"
               type="button"
@@ -320,63 +320,84 @@
         <div class="container">
           <header class="section-header">
             <h2 id="membership-title">Flexible memberships</h2>
-            <p>Choose a plan that fits your training goals. All memberships include open mat access and prices are tax-in.</p>
+            <p>Choose a plan that fits your training goals. All memberships include open mat access and prices are <strong>Tax-In.</strong></p>
           </header>
-          <div class="pricing">
-            <article class="pricing-card pricing-card--highlight">
-              <h3>Unlimited Grappling &amp; Striking</h3>
-              <p class="price">$172.50<span>/month</span></p>
-              <ul>
-                <li>Unlimited access to all grappling &amp; striking classes</li>
-                <li>Includes competition prep and seminar access</li>
-                <li>Open mat and conditioning sessions</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>Unlimited Gi Training</h3>
-              <p class="price">$138<span>/month</span></p>
-              <ul>
-                <li>Unlimited traditional gi classes</li>
-                <li>Includes open mat sessions</li>
-                <li>Member events and seminars</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>2 Classes Per Week</h3>
-              <p class="price">$80.50<span>/month</span></p>
-              <ul>
-                <li>Any two grappling or striking classes weekly</li>
-                <li>Technique-focused coaching</li>
-                <li>Open mat access on training days</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>Women's Only All Skills</h3>
-              <p class="price">$63.25<span>/month</span></p>
-              <ul>
-                <li>Women-led Brazilian jiu-jitsu class once a week</li>
-                <li>All experience levels welcome</li>
-                <li>Emphasis on leverage, flow, and confidence</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>Kids Jiu Jitsu</h3>
-              <p class="price">$74.75<span>/month</span></p>
-              <ul>
-                <li>One youth class per week</li>
-                <li>Builds discipline, focus, and coordination</li>
-                <li>Encouraging, small-group environment</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>Women's Cardio Kickboxing</h3>
-              <p class="price">$138<span>/6-week program</span></p>
-              <ul>
-                <li>High-energy striking and conditioning sessions</li>
-                <li>Six-week progressive curriculum</li>
-                <li>Supportive, women-only training environment</li>
-              </ul>
-            </article>
+          <div class="pricing-carousel carousel" data-carousel data-carousel-label="plans">
+            <button
+              class="carousel-arrow carousel-arrow--prev"
+              type="button"
+              data-carousel-prev
+            >
+              <span class="sr-only">Show previous plans</span>
+              <span aria-hidden="true" class="carousel-arrow-icon">‹</span>
+            </button>
+            <div class="carousel-viewport" data-carousel-viewport>
+              <div class="carousel-track" data-carousel-track>
+                <article class="pricing-card carousel-slide">
+                  <h3>Unlimited Grappling Training</h3>
+                  <p class="price">$138<span>/month</span></p>
+                  <ul>
+                    <li>Unlimited traditional gi &amp; no-gi classes</li>
+                    <li>Includes open mat sessions</li>
+                    <li>Member events and seminars</li>
+                  </ul>
+                </article>
+                <article class="pricing-card pricing-card--highlight carousel-slide">
+                  <h3>Unlimited Grappling &amp; Striking</h3>
+                  <p class="price">$172.50<span>/month</span></p>
+                  <ul>
+                    <li>Unlimited access to all grappling &amp; striking classes</li>
+                    <li>Includes competition prep and seminar access</li>
+                    <li>Open mat and conditioning sessions</li>
+                  </ul>
+                </article>
+                <article class="pricing-card carousel-slide">
+                  <h3>2 Classes Per Week</h3>
+                  <p class="price">$80.50<span>/month</span></p>
+                  <ul>
+                    <li>Any two grappling or striking classes weekly</li>
+                    <li>Technique-focused coaching</li>
+                    <li>Open mat access on training days</li>
+                  </ul>
+                </article>
+                <article class="pricing-card carousel-slide">
+                  <h3>Women's Only All Skills</h3>
+                  <p class="price">$63.25<span>/month</span></p>
+                  <ul>
+                    <li>Women-led Brazilian jiu-jitsu class once a week</li>
+                    <li>All experience levels welcome</li>
+                    <li>Emphasis on leverage, flow, and confidence</li>
+                  </ul>
+                </article>
+                <article class="pricing-card carousel-slide">
+                  <h3>Kids Jiu Jitsu</h3>
+                  <p class="price">$74.75<span>/month</span></p>
+                  <ul>
+                    <li>One youth class per week</li>
+                    <li>Builds discipline, focus, and coordination</li>
+                    <li>Encouraging, small-group environment</li>
+                  </ul>
+                </article>
+                <article class="pricing-card carousel-slide">
+                  <h3>Women's Cardio Kickboxing</h3>
+                  <p class="price">$138<span>/6-week program</span></p>
+                  <ul>
+                    <li>High-energy striking and conditioning sessions</li>
+                    <li>Six-week progressive curriculum</li>
+                    <li>Supportive, women-only training environment</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+            <button
+              class="carousel-arrow carousel-arrow--next"
+              type="button"
+              data-carousel-next
+            >
+              <span class="sr-only">Show next plans</span>
+              <span aria-hidden="true" class="carousel-arrow-icon">›</span>
+            </button>
+            <div class="carousel-dots" data-carousel-dots aria-label="Membership carousel navigation"></div>
           </div>
         </div>
       </section>
