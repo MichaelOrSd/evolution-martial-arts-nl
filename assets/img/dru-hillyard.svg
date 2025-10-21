@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrated portrait of Dur "Dru" Hillyard</title>
+  <desc id="desc">Stylized vector illustration showing a Brazilian jiu-jitsu instructor wearing a gi jacket.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#111111" />
+    </linearGradient>
+    <linearGradient id="gi" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f8f8" />
+      <stop offset="100%" stop-color="#d7d7d7" />
+    </linearGradient>
+    <linearGradient id="belt" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111111" />
+      <stop offset="100%" stop-color="#2f2f2f" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="800" rx="48" fill="url(#bg)" />
+  <circle cx="320" cy="240" r="160" fill="#f2d5a0" />
+  <path d="M206 640c12-120 76-200 114-200h0c38 0 102 80 114 200" fill="url(#gi)" />
+  <path d="M320 440c-84 0-144-72-144-180 0-88 64-148 144-148s144 60 144 148c0 108-60 180-144 180z" fill="#1f1f1f" opacity="0.12" />
+  <path d="M220 660h200l-28 120H248L220 660z" fill="#ffffff" opacity="0.5" />
+  <path d="M320 520c-52 0-116 56-132 132l-6 28h276l-6-28c-16-76-80-132-132-132z" fill="url(#gi)" />
+  <path d="M240 640h160l-16 72H256l-16-72z" fill="#ffffff" opacity="0.7" />
+  <rect x="240" y="640" width="160" height="36" rx="12" fill="url(#belt)" />
+  <path d="M320 216c-40 0-76 24-88 60 10 20 20 36 36 48 16 12 34 20 52 20s36-8 52-20c16-12 26-28 36-48-12-36-48-60-88-60z" fill="#2f2f2f" />
+  <ellipse cx="258" cy="244" rx="22" ry="28" fill="#f2d5a0" />
+  <ellipse cx="382" cy="244" rx="22" ry="28" fill="#f2d5a0" />
+  <path d="M320 316c-24 0-46-8-62-22 6 30 30 54 62 54s56-24 62-54c-16 14-38 22-62 22z" fill="#ddaa78" />
+  <path d="M274 232c8-8 22-12 46-12s38 4 46 12" stroke="#111111" stroke-width="12" stroke-linecap="round" fill="none" />
+  <path d="M288 272c4 8 16 16 32 16s28-8 32-16" stroke="#111111" stroke-width="12" stroke-linecap="round" fill="none" />
+</svg>
