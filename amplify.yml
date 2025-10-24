@@ -5,6 +5,23 @@ applications:
       phases:
         preBuild:
           commands:
+            - |
+              if SHALLOW_STATE=$(git rev-parse --is-shallow-repository 2>/dev/null); then
+                if [ "$SHALLOW_STATE" = "true" ]; then
+                  if git remote get-url origin >/dev/null 2>&1; then
+                    git fetch origin --prune --unshallow 2>/dev/null || git fetch origin --prune --depth=2147483647
+                  else
+                    echo "Skipping git history expansion: no origin remote configured"
+                  fi
+                else
+                  echo "Repository already has complete git history"
+                fi
+              else
+                echo "Git version does not support shallow detection; attempting to unshallow if possible"
+                if git remote get-url origin >/dev/null 2>&1; then
+                  git fetch origin --prune --unshallow 2>/dev/null || git fetch origin --prune --depth=2147483647 || true
+                fi
+              fi
             - echo "No pre-build steps required"
         build:
           commands:
