@@ -62,7 +62,7 @@
             Got a question? Email us at
             <a
               id="hero-email"
-              href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%20I%27d%20like%20to%20sign%20up%20for%20a%20membership."
+              href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99m%20interested%20in%20becoming%20a%20member%20and%20would%20love%20to%20learn%20more%20about%20your%20programs.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BYour%20Name%5D"
             >
               evolutionmartialartsnl@gmail.com
             </a>
@@ -625,7 +625,7 @@
               <li>
                 <strong>Email:</strong>
                 <a
-                  href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%20I%27d%20like%20to%20sign%20up%20for%20a%20membership."
+                  href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99m%20interested%20in%20becoming%20a%20member%20and%20would%20love%20to%20learn%20more%20about%20your%20programs.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BYour%20Name%5D"
                 >
                   evolutionmartialartsnl@gmail.com
                 </a>
@@ -635,6 +635,7 @@
           </div>
           <form
             class="contact-form"
+            id="contact-form"
             action="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%20I%27d%20like%20to%20sign%20up%20for%20a%20membership."
             method="post"
             enctype="text/plain"
@@ -658,11 +659,12 @@
             </div>
             <div class="form-row">
               <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="4" required>Hi, I&#39;d like to sign up for a membership.</textarea>
+              <textarea id="contact-message" name="message" rows="4" required>Hello, I’d like to sign up for a membership. Could you please share the next steps?</textarea>
             </div>
             <button class="button primary" type="submit">Send message</button>
             <p class="form-note">
-              Submitting opens your email client with the details pre-filled. Feel free to update the message before sending.
+              Submitting opens your email client with the details pre-filled. Review the message and update any details before
+              sending.
             </p>
           </form>
         </div>
@@ -697,5 +699,65 @@
 
     <script src="assets/js/programs-carousel.js" defer></script>
     <script src="assets/js/site.min.js" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+
+        form.addEventListener('submit', (event) => {
+          if (!form.reportValidity()) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const nameField = document.getElementById('contact-name');
+          const emailField = document.getElementById('contact-email');
+          const programField = document.getElementById('contact-program');
+          const messageField = document.getElementById('contact-message');
+
+          const name = nameField ? nameField.value.trim() : '';
+          const email = emailField ? emailField.value.trim() : '';
+          const program = programField
+            ? programField.options[programField.selectedIndex].text.trim()
+            : '';
+          const message = messageField ? messageField.value.trim() : '';
+
+          const subject = encodeURIComponent(
+            name ? `Membership inquiry from ${name}` : 'Membership inquiry from Evolution Martial Arts NL website',
+          );
+
+          const emailBodyLines = ['Dear Evolution Martial Arts NL Team,', ''];
+
+          let openingLine = 'I’m interested in your programs.';
+          if (name && program) {
+            openingLine = `My name is ${name} and I’m interested in the ${program} program.`;
+          } else if (name) {
+            openingLine = `My name is ${name} and I’m interested in your programs.`;
+          } else if (program) {
+            openingLine = `I’m interested in the ${program} program.`;
+          }
+
+          emailBodyLines.push(openingLine);
+
+          if (message) {
+            emailBodyLines.push('', message);
+          }
+
+          if (email) {
+            emailBodyLines.push('', `You can reach me at ${email}.`);
+          }
+
+          if (name) {
+            emailBodyLines.push('', 'Kind regards,', name);
+          }
+
+          const body = encodeURIComponent(emailBodyLines.join('\n'));
+          const mailto = `mailto:evolutionmartialartsnl@gmail.com?subject=${subject}&body=${body}`;
+
+          window.location.href = mailto;
+        });
+      });
+    </script>
   </body>
 </html>
