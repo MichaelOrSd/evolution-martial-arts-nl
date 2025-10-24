@@ -62,7 +62,7 @@
             Got a question? Email us at
             <a
               id="hero-email"
-              href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99m%20interested%20in%20becoming%20a%20member%20and%20would%20love%20to%20learn%20more%20about%20your%20programs.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BYour%20Name%5D"
+              href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99d%20like%20to%20sign%20up%20for%20a%20membership.%20Could%20you%20please%20share%20the%20next%20steps%3F%0D%0A%0D%0AKind%20regards%2C%0D%0A%5BYour%20Name%5D"
             >
               evolutionmartialartsnl@gmail.com
             </a>
@@ -625,7 +625,7 @@
               <li>
                 <strong>Email:</strong>
                 <a
-                  href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99m%20interested%20in%20becoming%20a%20member%20and%20would%20love%20to%20learn%20more%20about%20your%20programs.%0D%0A%0D%0ABest%20regards%2C%0D%0A%5BYour%20Name%5D"
+                  href="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Dear%20Evolution%20Martial%20Arts%20NL%20Team%2C%0D%0A%0D%0AI%E2%80%99d%20like%20to%20sign%20up%20for%20a%20membership.%20Could%20you%20please%20share%20the%20next%20steps%3F%0D%0A%0D%0AKind%20regards%2C%0D%0A%5BYour%20Name%5D"
                 >
                   evolutionmartialartsnl@gmail.com
                 </a>
@@ -636,7 +636,7 @@
           <form
             class="contact-form"
             id="contact-form"
-            action="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%20I%27d%20like%20to%20sign%20up%20for%20a%20membership."
+            action="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=I%E2%80%99d%20like%20to%20sign%20up%20for%20a%20membership.%20Could%20you%20please%20share%20the%20next%20steps%3F"
             method="post"
             enctype="text/plain"
           >
@@ -659,7 +659,7 @@
             </div>
             <div class="form-row">
               <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="4" required>Hello, I’d like to sign up for a membership. Could you please share the next steps?</textarea>
+              <textarea id="contact-message" name="message" rows="4" required>I’d like to sign up for a membership. Could you please share the next steps?</textarea>
             </div>
             <button class="button primary" type="submit">Send message</button>
             <p class="form-note">
@@ -712,44 +712,23 @@
           event.preventDefault();
 
           const nameField = document.getElementById('contact-name');
-          const emailField = document.getElementById('contact-email');
-          const programField = document.getElementById('contact-program');
           const messageField = document.getElementById('contact-message');
 
           const name = nameField ? nameField.value.trim() : '';
-          const email = emailField ? emailField.value.trim() : '';
-          const program = programField
-            ? programField.options[programField.selectedIndex].text.trim()
-            : '';
           const message = messageField ? messageField.value.trim() : '';
 
           const subject = encodeURIComponent(
             name ? `Membership inquiry from ${name}` : 'Membership inquiry from Evolution Martial Arts NL website',
           );
 
+          const defaultMessage = 'I’d like to sign up for a membership. Could you please share the next steps?';
           const emailBodyLines = ['Dear Evolution Martial Arts NL Team,', ''];
 
-          let openingLine = 'I’m interested in your programs.';
-          if (name && program) {
-            openingLine = `My name is ${name} and I’m interested in the ${program} program.`;
-          } else if (name) {
-            openingLine = `My name is ${name} and I’m interested in your programs.`;
-          } else if (program) {
-            openingLine = `I’m interested in the ${program} program.`;
-          }
-
-          emailBodyLines.push(openingLine);
-
-          if (message) {
-            emailBodyLines.push('', message);
-          }
-
-          if (email) {
-            emailBodyLines.push('', `You can reach me at ${email}.`);
-          }
+          emailBodyLines.push(message || defaultMessage);
+          emailBodyLines.push('', 'Kind regards,');
 
           if (name) {
-            emailBodyLines.push('', 'Kind regards,', name);
+            emailBodyLines.push(name);
           }
 
           const body = encodeURIComponent(emailBodyLines.join('\n'));
