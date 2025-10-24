@@ -5,6 +5,7 @@ applications:
       phases:
         preBuild:
           commands:
+            - if [ -f .git/shallow ]; then git fetch --prune --unshallow; fi
             - echo "No pre-build steps required"
         build:
           commands:
