@@ -6,3 +6,4 @@ Use this checklist after each deployment.
 - [ ] Production URLs `https://evolutionmartialartsnl.com` and `https://www.evolutionmartialartsnl.com` load over HTTPS with valid certificates.
 - [ ] No mixed-content warnings in browser dev tools.
 - [ ] Quick Lighthouse scan (Desktop + Mobile) scores look healthy (no major regressions).
+- [ ] Hitting a non-existent URL (e.g., `/missing-page`) serves the branded `404.html` fallback.

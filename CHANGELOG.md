@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-02-14
+
+### Amplify readiness
+- Added minified carousel CSS/JS bundles and updated `index.html` to use them for leaner production payloads.
+- Introduced a branded `404.html` so Amplify can serve a custom not-found experience.
+- Documented the custom error page requirement in README, redirect guidance, and launch checklist.
+
 ## 2025-10-10
 
 ### Cleanup summary
