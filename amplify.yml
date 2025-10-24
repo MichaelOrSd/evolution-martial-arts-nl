@@ -4,7 +4,8 @@ applications:
     frontend:
       phases:
         preBuild:
-          commands: []
+          commands:
+            - echo "No pre-build steps required"
         build:
           commands:
             - echo "Static site: no build step required"
@@ -12,5 +13,3 @@ applications:
         baseDirectory: .
         files:
           - '**/*'
-      cache:
-        paths: []
