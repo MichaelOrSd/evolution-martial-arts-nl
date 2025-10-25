@@ -665,8 +665,11 @@ img {
   text-align: center;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(245, 197, 24, 0.12);
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: stretch;
+  height: 100%;
 }
 
 .pricing-card--highlight {
@@ -694,21 +697,9 @@ img {
   color: var(--color-text-light);
 }
 
-.pricing-card ul {
-  list-style: none;
+.pricing-card__description {
   margin: 0;
-  padding: 0;
   color: var(--color-text-light);
-}
-
-.pricing-card ul li + li {
-  margin-top: 0.45rem;
-}
-
-.pricing-card .note {
-  margin: 0;
-  font-weight: 600;
-  color: var(--color-accent);
 }
 
 .testimonials {

@@ -77,9 +77,21 @@
 .carousel .carousel-slide {
   flex: 0 0 calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
   min-width: calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
+  display: flex;
 }
 
-.carousel .carousel-slide.card {
+.programs-carousel .carousel-slide,
+.pricing-carousel .carousel-slide {
+  height: 100%;
+}
+
+.programs-carousel .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pricing-carousel .pricing-card {
   height: 100%;
 }
 
@@ -112,13 +124,8 @@
 }
 
 @media (min-width: 48rem) {
-  .carousel {
-    --carousel-items: 2;
-  }
-}
-
-@media (min-width: 64rem) {
-  .carousel {
+  .programs-carousel,
+  .pricing-carousel {
     --carousel-items: 3;
   }
 }
