@@ -84,14 +84,33 @@
   display: block;
 }
 
+.programs-carousel,
+.pricing-carousel {
+  --carousel-card-width: min(320px, 90vw);
+  --carousel-card-height: clamp(520px, 85vh, 620px);
+}
+
 .programs-carousel .carousel-slide,
 .pricing-carousel .carousel-slide {
-  height: 100%;
+  flex: 0 0 var(--carousel-card-width);
+  min-width: var(--carousel-card-width);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .programs-carousel .card,
 .pricing-carousel .pricing-card {
-  height: 100%;
+  width: 100%;
+  max-width: var(--carousel-card-width);
+  height: var(--carousel-card-height);
+}
+
+@media (min-width: 64rem) {
+  .programs-carousel,
+  .pricing-carousel {
+    --carousel-card-width: min(320px, 28vw);
+  }
 }
 
 .carousel .carousel-dots {
