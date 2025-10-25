@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = carousel.querySelector('[data-carousel-track]');
     const slides = track ? Array.from(track.children) : [];
     const dotsContainer = carousel.querySelector('[data-carousel-dots]');
+    const viewport = carousel.querySelector('[data-carousel-viewport]');
     const prevButton = carousel.querySelector('[data-carousel-prev]');
     const nextButton = carousel.querySelector('[data-carousel-next]');
     const itemLabel = carousel.dataset.carouselLabel || 'items';
@@ -66,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const activeSlide = slides[currentIndex];
       const offset = activeSlide ? activeSlide.offsetLeft : 0;
-      track.style.transform = `translateX(-${offset}px)`;
+      const maxOffset = viewport ? track.scrollWidth - viewport.offsetWidth : track.scrollWidth;
+      const clampedOffset = Math.max(0, Math.min(offset, Math.max(0, maxOffset)));
+      track.style.transform = `translateX(-${clampedOffset}px)`;
       updateDots();
       updateArrows();
     };
