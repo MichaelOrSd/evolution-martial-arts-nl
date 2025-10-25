@@ -87,7 +87,7 @@
 .programs-carousel,
 .pricing-carousel {
   --carousel-card-width: min(320px, 90vw);
-  --carousel-card-height: clamp(520px, 85vh, 620px);
+  --carousel-card-height: clamp(350px, 56vh, 420px);
 }
 
 .programs-carousel .carousel-slide,
