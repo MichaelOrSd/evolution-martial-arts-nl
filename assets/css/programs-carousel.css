@@ -77,7 +77,11 @@
 .carousel .carousel-slide {
   flex: 0 0 calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
   min-width: calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
-  display: flex;
+}
+
+.carousel .carousel-slide.card,
+.carousel .carousel-slide.pricing-card {
+  display: block;
 }
 
 .programs-carousel .carousel-slide,
@@ -85,12 +89,7 @@
   height: 100%;
 }
 
-.programs-carousel .card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
+.programs-carousel .card,
 .pricing-carousel .pricing-card {
   height: 100%;
 }
