@@ -77,22 +77,40 @@
 .carousel .carousel-slide {
   flex: 0 0 calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
   min-width: calc((100% - (var(--carousel-items) - 1) * var(--carousel-gap)) / var(--carousel-items));
-  display: flex;
+}
+
+.carousel .carousel-slide.card,
+.carousel .carousel-slide.pricing-card {
+  display: block;
+}
+
+.programs-carousel,
+.pricing-carousel {
+  --carousel-card-width: min(320px, 90vw);
+  --carousel-card-height: clamp(350px, 56vh, 420px);
 }
 
 .programs-carousel .carousel-slide,
 .pricing-carousel .carousel-slide {
-  height: 100%;
-}
-
-.programs-carousel .card {
+  flex: 0 0 var(--carousel-card-width);
+  min-width: var(--carousel-card-width);
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  align-items: stretch;
+  justify-content: center;
 }
 
+.programs-carousel .card,
 .pricing-carousel .pricing-card {
-  height: 100%;
+  width: 100%;
+  max-width: var(--carousel-card-width);
+  height: var(--carousel-card-height);
+}
+
+@media (min-width: 64rem) {
+  .programs-carousel,
+  .pricing-carousel {
+    --carousel-card-width: min(320px, 28vw);
+  }
 }
 
 .carousel .carousel-dots {
