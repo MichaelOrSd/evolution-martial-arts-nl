@@ -117,6 +117,43 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const distance = touchStartX - touchEndX;
+
+      if (Math.abs(distance) < minSwipeDistance) {
+        return;
+      }
+
+      if (distance > 0 && currentIndex < getMaxIndex()) {
+        // Swipe left - next
+        currentIndex += 1;
+        update();
+      } else if (distance < 0 && currentIndex > 0) {
+        // Swipe right - prev
+        currentIndex -= 1;
+        update();
+      }
+    };
+
+    if (viewport) {
+      viewport.addEventListener('touchstart', handleTouchStart, { passive: true });
+      viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+
     createDots();
     update();
 

@@ -32,19 +32,14 @@ This document tracks potential improvements for the Evolution Martial Arts NL we
 - **Impact**: Better social media sharing and SEO
 - **Completed**: 2025-11-18 (PNG conversion optional)
 
-### 5. Improve Contact Form
-- [ ] Replace mailto form with proper contact form solution
-- [ ] Options: Formspree (free), Google Forms embedded, or custom backend
-- **Impact**: Better user experience, fewer abandoned inquiries
-
 ## Medium Priority
 
-### 6. Add Trust Signals
+<!-- ### 6. Add Trust Signals
 - [ ] Add "500+ students trained" or similar stat
 - [ ] Add "Operating since [YEAR]"
 - [ ] Uncomment and populate testimonials section with real quotes
 - [ ] Add competition achievements/wins
-- **Impact**: Builds credibility and trust
+- **Impact**: Builds credibility and trust -->
 
 ### 7. Improve CTAs (Call-to-Actions)
 - [ ] Add urgency to hero CTA ("Limited spots - Try a free class")
@@ -52,12 +47,13 @@ This document tracks potential improvements for the Evolution Martial Arts NL we
 - [ ] Consider sticky header CTA on mobile
 - **Impact**: Higher conversion rates
 
-### 8. Better Mobile Experience
-- [ ] Add "Back to Top" button for mobile users
-- [ ] Test and improve carousel swipe gestures
-- [ ] Consider collapsible schedule for mobile
-- [ ] Test all touch interactions
+### 8. Better Mobile Experience ✅
+- [x] Add "Back to Top" button for mobile users
+- [x] Add carousel swipe gestures for touch devices
+- [ ] Optional: Consider collapsible schedule for mobile
+- [x] Test all touch interactions
 - **Impact**: Better mobile UX (majority of traffic is mobile)
+- **Completed**: 2025-11-18
 
 ### 9. Add Phone Number
 - [ ] Uncomment phone number line 682 or add new phone contact

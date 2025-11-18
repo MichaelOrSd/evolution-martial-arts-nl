@@ -57,4 +57,34 @@
       observer.observe(el);
     });
   }
+
+  // Back to Top button
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    let scrollTimeout;
+    const showButtonThreshold = 300;
+
+    const toggleBackToTop = () => {
+      if (window.scrollY > showButtonThreshold) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    };
+
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(toggleBackToTop, 100);
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Initial check
+    toggleBackToTop();
+  }
 })();
