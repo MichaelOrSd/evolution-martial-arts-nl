@@ -32,9 +32,12 @@ This document tracks potential improvements for the Evolution Martial Arts NL we
 - **Impact**: Better social media sharing and SEO
 - **Completed**: 2025-11-18 (PNG conversion optional)
 
-### 5. Improve Contact Form & Email Setup 🔄 IN PROGRESS
+### 5. Improve Contact Form & Email Setup 🔄 IN PROGRESS (80% Complete)
 - [ ] Set up Cloudflare Email Routing for custom email (contact@evolutionmartialartsnl.com)
-  - [ ] Add domain to Cloudflare
+  - [x] Create Cloudflare account ✅ 2025-11-18
+  - [x] Start adding domain to Cloudflare (IN PROGRESS - at DNS scan step)
+  - [ ] Update nameservers in Route 53
+  - [ ] Wait for DNS propagation
   - [ ] Configure email forwarding to evolutionmartialartsnl@gmail.com
   - [ ] Test email forwarding
 - [ ] Set up EmailJS account (Dru needs to do this)
@@ -42,10 +45,11 @@ This document tracks potential improvements for the Evolution Martial Arts NL we
   - [ ] Create email service
   - [ ] Create email template
   - [ ] Get Service ID, Template ID, and Public Key
-- [ ] Implement EmailJS in contact form
-- [ ] Replace mailto form with EmailJS submission
-- [ ] Add success/error message handling
+- [x] Implement EmailJS in contact form ✅
+- [x] Replace mailto form with EmailJS submission ✅
+- [x] Add success/error message handling ✅
 - **Impact**: Better user experience, fewer abandoned inquiries, more professional email address
+- **Status**: Code ready, waiting for Cloudflare DNS + EmailJS credentials
 
 ## Medium Priority
 
