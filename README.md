@@ -8,7 +8,8 @@ This repository contains a cleaned static export of the Evolution Martial Arts N
 - `assets/css/` – author-friendly and minified stylesheets.
 - `assets/js/` – author-friendly and minified JavaScript (with source map).
 - `assets/og-image.svg` – vector social preview artwork used for sharing cards.
-- `amplify.yml` – AWS Amplify Hosting configuration.
+- `CNAME` – GitHub Pages custom domain configuration.
+- `amplify.yml` – legacy AWS Amplify configuration (no longer used).
 - `docs/` – documentation for redirect configuration and future ops notes.
 
 ## Local preview
@@ -21,22 +22,32 @@ python -m http.server 8080
 
 Then visit <http://localhost:8080>.
 
-## Hosting on AWS Amplify
+## Hosting on GitHub Pages
 
-1. In the AWS console, open **Amplify** and choose **New app → Host web app**.
-2. Connect your GitHub account when prompted and authorize Amplify to access the repository.
-3. Select the repository and choose the **main** branch as the production branch so that any push to `main` triggers a deploy.
-4. Enable **Preview builds** so pull requests (for example `codex/clean-weebly-export`) get their own preview URLs.
-5. Amplify detects `amplify.yml` automatically. Confirm the artifact base directory is the repo root (`/`) and that no additional build commands are required.
-6. Complete the wizard to trigger the initial deploy.
+The site is hosted on GitHub Pages and automatically deploys when changes are pushed to the `main` branch.
 
-## Custom Domain via Route 53
+- **Live site**: https://evolutionmartialartsnl.com
+- **GitHub Pages URL**: https://michaelorsd.github.io/evolution-martial-arts-nl/
 
-1. After the first deploy, open the app in Amplify and navigate to **App settings → Domain management**.
-2. Click **Add domain** and enter `evolutionmartialartsnl.com`.
-3. Map the root domain `evolutionmartialartsnl.com` and the subdomain `www.evolutionmartialartsnl.com` to the production branch (`main`).
-4. Because the hosted zone already exists in Route 53, Amplify suggests the required DNS records (A/AAAA and validation CNAMEs). Accept and save the changes.
-5. Amplify provisions and validates the SSL certificate automatically—no manual ACM step is necessary.
-6. (Optional) Set up a canonical redirect (e.g., `www` → apex) in **Rewrites and redirects** after DNS finishes propagating.
+### Custom Domain Setup
 
-Refer to `docs/AMPLIFY-REDIRECTS.md` for the rules to configure in the Amplify console.
+The custom domain is configured via the `CNAME` file in the repository root. To update DNS:
+
+1. In your DNS provider (Route 53), add the following DNS records:
+   - **A records** (for apex domain):
+     ```
+     185.199.108.153
+     185.199.109.153
+     185.199.110.153
+     185.199.111.153
+     ```
+   - **CNAME record** (for www subdomain):
+     ```
+     www.evolutionmartialartsnl.com → michaelorsd.github.io
+     ```
+
+2. GitHub Pages will automatically provision an SSL certificate once DNS propagates.
+
+### Deployment
+
+Changes pushed to `main` are automatically deployed within seconds. No build step is required.
