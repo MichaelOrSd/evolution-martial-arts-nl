@@ -1,5 +1,24 @@
 # Changelog
 
+## 2025-11-18
+
+### Migration to GitHub Pages
+- Migrated hosting from AWS Amplify to GitHub Pages for simpler, free, and faster deployments
+- Repository made public to enable GitHub Pages
+- Configured custom domain with DNS records pointing to GitHub Pages
+- SSL certificate automatically provisioned by GitHub Pages
+- Removed Amplify-specific files: `amplify.yml`, `docs/AMPLIFY-REDIRECTS.md`, `scripts/prebuild.sh`
+- Cleaned up commented-out HTML sections (Events, Merchandise, Testimonials)
+- Updated navigation to remove links to non-existent sections
+- Updated README and CHECKLIST for GitHub Pages workflow
+- Added TODO.md with prioritized site improvement suggestions
+
+### Code Cleanup
+- Removed all Amplify-related configuration and documentation
+- Removed 220+ lines of commented-out HTML code
+- Cleaned up header and footer navigation
+- Streamlined project structure
+
 ## 2025-02-14
 
 ### Amplify readiness

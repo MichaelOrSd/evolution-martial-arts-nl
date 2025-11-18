@@ -9,8 +9,7 @@ This repository contains a cleaned static export of the Evolution Martial Arts N
 - `assets/js/` – author-friendly and minified JavaScript (with source map).
 - `assets/og-image.svg` – vector social preview artwork used for sharing cards.
 - `CNAME` – GitHub Pages custom domain configuration.
-- `amplify.yml` – legacy AWS Amplify configuration (no longer used).
-- `docs/` – documentation for redirect configuration and future ops notes.
+- `TODO.md` – list of potential site improvements and enhancements.
 
 ## Local preview
 
