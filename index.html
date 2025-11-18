@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/site.min.css" />
     <link rel="stylesheet" href="assets/css/programs-carousel.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
     <header class="site-header" id="top">
@@ -427,17 +428,14 @@
           <form
             class="contact-form"
             id="contact-form"
-            action="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%0D%0A%0D%0ACould%20you%20please%20tell%20me%20more%20about%20your%20programs%3F%0D%0A%0D%0AKind%20regards%2C%0D%0A"
-            method="post"
-            enctype="text/plain"
           >
             <div class="form-row">
               <label for="contact-name">Name</label>
-              <input id="contact-name" name="name" type="text" autocomplete="name" required />
+              <input id="contact-name" name="from_name" type="text" autocomplete="name" required />
             </div>
             <div class="form-row">
               <label for="contact-email">Email</label>
-              <input id="contact-email" name="email" type="email" autocomplete="email" required />
+              <input id="contact-email" name="reply_to" type="email" autocomplete="email" required />
             </div>
             <div class="form-row">
               <label for="contact-program">Program interest</label>
@@ -461,11 +459,8 @@
                 placeholder="Let us know anything specific you’d like us to prepare before your visit."
               ></textarea>
             </div>
-            <button class="button primary" type="submit">Send message</button>
-            <p class="form-note">
-              Submitting opens your email client with the details pre-filled. Review the message, add anything extra, and send
-              when you’re ready.
-            </p>
+            <button class="button primary" type="submit" id="submit-btn">Send message</button>
+            <div id="form-status" class="form-status" style="display: none;"></div>
           </form>
         </div>
         <div class="map" aria-hidden="true">
@@ -505,48 +500,76 @@
     <script src="assets/js/programs-carousel.min.js" defer></script>
     <script src="assets/js/site.min.js" defer></script>
     <script>
+      // EmailJS Configuration
+      // TODO: Replace these placeholder values with real credentials from Dru
+      // See SETUP-EMAIL.md for instructions
+      const EMAILJS_CONFIG = {
+        serviceId: 'YOUR_SERVICE_ID',     // Get from EmailJS dashboard
+        templateId: 'YOUR_TEMPLATE_ID',    // Get from EmailJS dashboard
+        publicKey: 'YOUR_PUBLIC_KEY'       // Get from EmailJS dashboard
+      };
+
       window.addEventListener('DOMContentLoaded', () => {
+        // Initialize EmailJS
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init(EMAILJS_CONFIG.publicKey);
+        }
+
         const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formStatus = document.getElementById('form-status');
+
         if (!form) return;
 
         form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
           if (!form.reportValidity()) {
             return;
           }
 
-          event.preventDefault();
-
-          const nameField = document.getElementById('contact-name');
-          const programField = document.getElementById('contact-program');
-          const messageField = document.getElementById('contact-message');
-
-          const name = nameField ? nameField.value.trim() : '';
-          const selectedProgramOption =
-            programField && programField.selectedIndex >= 0
-              ? programField.options[programField.selectedIndex]
-              : null;
-          const programLabel = selectedProgramOption ? selectedProgramOption.text.trim() : 'program';
-          const additionalMessage = messageField ? messageField.value.trim() : '';
-
-          const subject = encodeURIComponent(
-            name
-              ? `Membership inquiry about ${programLabel} from ${name}`
-              : `Membership inquiry about ${programLabel}`,
-          );
-
-          const emailBodyLines = ['Hi,', '', `Could you please tell me more about your ${programLabel} program?`, ''];
-
-          if (additionalMessage) {
-            emailBodyLines.push(additionalMessage, '');
+          // Check if EmailJS is configured
+          if (EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
+            showStatus('error', 'Email service not configured. Please contact the administrator.');
+            return;
           }
 
-          emailBodyLines.push('Kind regards,', '', name);
+          // Disable submit button
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
 
-          const body = encodeURIComponent(emailBodyLines.join('\n'));
-          const mailto = `mailto:evolutionmartialartsnl@gmail.com?subject=${subject}&body=${body}`;
-
-          window.location.href = mailto;
+          // Send email using EmailJS
+          emailjs.sendForm(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateId,
+            form
+          ).then(
+            function(response) {
+              console.log('SUCCESS!', response.status, response.text);
+              showStatus('success', 'Thank you! Your message has been sent. We\'ll get back to you soon.');
+              form.reset();
+            },
+            function(error) {
+              console.log('FAILED...', error);
+              showStatus('error', 'Sorry, there was an error sending your message. Please try emailing us directly at evolutionmartialartsnl@gmail.com');
+            }
+          ).finally(function() {
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send message';
+          });
         });
+
+        function showStatus(type, message) {
+          formStatus.textContent = message;
+          formStatus.className = 'form-status form-status--' + type;
+          formStatus.style.display = 'block';
+
+          // Hide after 10 seconds
+          setTimeout(() => {
+            formStatus.style.display = 'none';
+          }, 10000);
+        }
       });
     </script>
   </body>
