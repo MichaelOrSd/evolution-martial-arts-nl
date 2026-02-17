@@ -23,7 +23,10 @@ Living document for tracking the state, changes, and roadmap of the Evolution Ma
 
 ### 2026-02-17
 - Reverted contact form from broken EmailJS (unconfigured placeholder credentials) back to working `mailto:` approach
+- Moved pre-filled template message into editable textarea so users can modify before sending
 - Added CLAUDE.md for Claude Code context
+- Added project.md for ongoing tracking
+- Started EmailJS setup (free tier) — see blocked item below
 
 ### 2025-11-18
 - Migrated hosting from AWS Amplify to GitHub Pages
@@ -48,6 +51,14 @@ Living document for tracking the state, changes, and roadmap of the Evolution Ma
 ---
 
 ## TODO
+
+### Blocked — Waiting on Dru
+- [ ] **EmailJS setup** — Account created, Gmail service started (Service ID: `service_3mu8g0c`). Dru needs to click **Connect Account** in the EmailJS dashboard to authorize his Gmail via OAuth. Once connected:
+  1. Click **Create Service**
+  2. Create an email template (see template fields below)
+  3. Get Template ID and Public Key from the dashboard
+  4. Pass all 3 credentials so we can wire them into the site code
+  - **Template fields to use:** `{{from_name}}`, `{{reply_to}}`, `{{program}}`, `{{message}}`
 
 ### High Priority
 - [ ] Add phone number with click-to-call for mobile
