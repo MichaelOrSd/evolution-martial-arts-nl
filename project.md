@@ -32,9 +32,7 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 
 ### High Priority (no blockers)
 
-- [ ] Add `rel="noopener"` to external links (Instagram link, line 424)
-- [ ] Add JSON-LD structured data (LocalBusiness schema) for SEO
-- [ ] Convert og-image.svg to PNG (1200x630px) — SVG doesn't render on Twitter/LinkedIn/iMessage
+All cleared — see Completed section.
 
 ### Medium Priority
 
@@ -73,6 +71,11 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - [x] EmailJS integration — Gmail service connected, template created, form wired up with real credentials — 2026-03-18
 - [x] EmailJS delivery confirmed by Dru — 2026-03-18
 - [x] Deployed to production, HTTPS verified — 2026-03-18
+- [x] Phone number added with click-to-call — 2026-03-18
+- [x] Added `rel="noopener"` to external links — 2026-03-18
+- [x] Added JSON-LD structured data (MartialArtsSchool schema) for SEO — 2026-03-18
+- [x] Converted og-image.svg to PNG (1200x630) for social sharing — 2026-03-18
+- [x] Created llms.txt for AI crawlers — 2026-03-18
 
 ---
 
