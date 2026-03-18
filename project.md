@@ -25,10 +25,10 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 
 ### Blocked — Waiting on Dru
 
-- [ ] **Confirm EmailJS delivery** — Test email sent 2026-03-18, awaiting confirmation from Dru that it arrived in Gmail
-- [ ] **Phone number** — Need Dru's number to add click-to-call link (placeholder commented out at line 415)
-- [ ] **Trust signals content** — Need real numbers from Dru (years operating, students trained, competition wins)
-- [ ] **Testimonials** — Need real quotes from students
+- [x] ~~**Confirm EmailJS delivery**~~ — Confirmed 2026-03-18, Dru received test email
+- [x] ~~**Phone number**~~ — (709) 330-6894 added with click-to-call — 2026-03-18
+- [ ] **Trust signals content** — 4 years in business confirmed. Still need: students trained, competition wins
+- [ ] **Testimonials** — Dru collecting quotes at next class
 
 ### High Priority (no blockers)
 
@@ -71,6 +71,8 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - [x] Added CLAUDE.md and project.md — 2026-02-17
 - [x] Consolidated TODO.md + CHECKLIST.md into project.md — 2026-03-18
 - [x] EmailJS integration — Gmail service connected, template created, form wired up with real credentials — 2026-03-18
+- [x] EmailJS delivery confirmed by Dru — 2026-03-18
+- [x] Deployed to production, HTTPS verified — 2026-03-18
 
 ---
 
