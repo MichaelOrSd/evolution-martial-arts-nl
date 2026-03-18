@@ -30,7 +30,7 @@ Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule
 
 **JS** (`assets/js/`): Two scripts — `site.js` (navigation toggle, Intersection Observer fade-ins, back-to-top button, year injection) and `programs-carousel.js` (carousel with touch/swipe, dot navigation, responsive items-per-view via CSS variables). Each has a `.min.js` production version. Production HTML references the minified versions.
 
-**EmailJS** integration is inline in `index.html` (bottom). Currently uses placeholder credentials — see `SETUP-EMAIL.md` and `EMAILJS-CREDENTIALS.md` for setup.
+**EmailJS** integration is inline in `index.html` (bottom). Currently uses placeholder credentials — see `SETUP-EMAIL.md` and `EMAILJS-CREDENTIALS.md` for setup. See `project.md` for full project state, TODO, and change history.
 
 ## Key Conventions
 
@@ -45,6 +45,10 @@ Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule
 ## When Editing
 
 Both source and minified versions of CSS/JS exist. Edit the source files (`site.css`, `site.js`, `programs-carousel.css`, `programs-carousel.js`), then regenerate the minified versions. The HTML loads only the `.min.*` files in production.
+
+There is no build tool or minifier installed. When updating source files, manually produce the `.min.css` / `.min.js` counterparts (strip comments, collapse whitespace). The JS source map (`site.min.js.map`) should also be updated if `site.js` changes.
+
+A `404.html` page exists at the repo root for GitHub Pages 404 handling.
 
 ## External Dependencies
 

@@ -427,9 +427,6 @@
           <form
             class="contact-form"
             id="contact-form"
-            action="mailto:evolutionmartialartsnl@gmail.com?subject=Membership%20Inquiry&body=Hi%2C%0D%0A%0D%0ACould%20you%20please%20tell%20me%20more%20about%20your%20programs%3F%0D%0A%0D%0AKind%20regards%2C%0D%0A"
-            method="post"
-            enctype="text/plain"
           >
             <div class="form-row">
               <label for="contact-name">Name</label>
@@ -464,11 +461,8 @@ Could you please tell me more about your programs?
 
 Kind regards,</textarea>
             </div>
-            <button class="button primary" type="submit">Send message</button>
-            <p class="form-note">
-              Submitting opens your email client with the details pre-filled. Review the message, add anything extra, and send
-              when you're ready.
-            </p>
+            <button class="button primary" type="submit" id="contact-submit">Send message</button>
+            <div id="form-status" class="form-status" hidden></div>
           </form>
         </div>
         <div class="map" aria-hidden="true">
@@ -507,42 +501,57 @@ Kind regards,</textarea>
 
     <script src="assets/js/programs-carousel.min.js" defer></script>
     <script src="assets/js/site.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('contact-form');
+      (function () {
+        emailjs.init('ZmnXlTrec0ZBUsiNI');
+
+        var form = document.getElementById('contact-form');
         if (!form) return;
 
-        form.addEventListener('submit', (event) => {
-          if (!form.reportValidity()) {
-            return;
-          }
-
+        form.addEventListener('submit', function (event) {
           event.preventDefault();
+          if (!form.reportValidity()) return;
 
-          const nameField = document.getElementById('contact-name');
-          const programField = document.getElementById('contact-program');
-          const messageField = document.getElementById('contact-message');
-
-          const name = nameField ? nameField.value.trim() : '';
-          const selectedProgramOption =
+          var btn = document.getElementById('contact-submit');
+          var status = document.getElementById('form-status');
+          var programField = document.getElementById('contact-program');
+          var programLabel =
             programField && programField.selectedIndex >= 0
-              ? programField.options[programField.selectedIndex]
-              : null;
-          const programLabel = selectedProgramOption ? selectedProgramOption.text.trim() : 'program';
-          const message = messageField ? messageField.value.trim() : '';
+              ? programField.options[programField.selectedIndex].text.trim()
+              : '';
 
-          const subject = encodeURIComponent(
-            name
-              ? `Membership inquiry about ${programLabel} from ${name}`
-              : `Membership inquiry about ${programLabel}`,
-          );
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+          status.hidden = true;
 
-          const body = encodeURIComponent(message);
-          const mailto = `mailto:evolutionmartialartsnl@gmail.com?subject=${subject}&body=${body}`;
-
-          window.location.href = mailto;
+          emailjs
+            .send('service_uokvg25', 'template_oa28y43', {
+              from_name: document.getElementById('contact-name').value.trim(),
+              reply_to: document.getElementById('contact-email').value.trim(),
+              program: programLabel,
+              message: document.getElementById('contact-message').value.trim(),
+            })
+            .then(function () {
+              status.textContent = 'Message sent! We\u2019ll get back to you soon.';
+              status.className = 'form-status form-status--success';
+              status.hidden = false;
+              form.reset();
+              document.getElementById('contact-message').value =
+                'Hi,\n\nCould you please tell me more about your programs?\n\nKind regards,';
+            })
+            .catch(function () {
+              status.textContent =
+                'Something went wrong. Please email us directly at evolutionmartialartsnl@gmail.com';
+              status.className = 'form-status form-status--error';
+              status.hidden = false;
+            })
+            .finally(function () {
+              btn.disabled = false;
+              btn.textContent = 'Send message';
+            });
         });
-      });
+      })();
     </script>
   </body>
 </html>

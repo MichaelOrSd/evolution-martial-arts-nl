@@ -1,89 +1,100 @@
 # Project Tracker
 
-Living document for tracking the state, changes, and roadmap of the Evolution Martial Arts NL website.
+Living document for tracking the state, changes, roadmap, and notes for the Evolution Martial Arts NL website.
 
 **Client:** Dru Hillyard
 **Site:** https://evolutionmartialartsnl.com
 **Hosting:** GitHub Pages (free, auto-deploys on push to `main`)
 **Email:** evolutionmartialartsnl@gmail.com
+**DNS:** Route 53 (Cloudflare account created but nameserver migration never completed)
+**Costs:** $0/month
 
 ---
 
 ## Current State
 
-- Contact form uses `mailto:` — opens user's email client with details pre-filled to evolutionmartialartsnl@gmail.com
-- Site is a single-page static site (~45 KB total), images hosted on AWS S3
-- DNS managed via Route 53, domain pointed at GitHub Pages
-- Cloudflare account created but nameserver migration not completed
-- All hosting costs: $0/month
-
----
-
-## Change Log
-
-### 2026-02-17
-- Reverted contact form from broken EmailJS (unconfigured placeholder credentials) back to working `mailto:` approach
-- Moved pre-filled template message into editable textarea so users can modify before sending
-- Added CLAUDE.md for Claude Code context
-- Added project.md for ongoing tracking
-- Started EmailJS setup (free tier) — see blocked item below
-
-### 2025-11-18
-- Migrated hosting from AWS Amplify to GitHub Pages
-- Added favicon with EVO branding
-- Fixed redundant alt text on instructor photo
-- Improved SEO: page title, meta description, OG tags
-- Added Back to Top button (appears after 300px scroll)
-- Added carousel touch/swipe gestures
-- Removed ~300 lines of dead code (commented-out Events, Merchandise, Testimonials sections)
-- Created email setup guides (SETUP-EMAIL.md, EMAILJS-CREDENTIALS.md)
-- Implemented EmailJS contact form (later reverted 2026-02-17)
-
-### 2025-02-14
-- Added minified carousel CSS/JS bundles
-- Added branded 404.html page
-
-### 2025-10-10
-- Replaced Weebly template with handcrafted static site
-- Rebuilt hero as CSS gradients (no binary assets)
-- Reduced site from 872 KB to 45 KB
+- Single-page static site (~45 KB), images on AWS S3
+- Contact form sends via EmailJS (no email client popup) — success/error feedback inline
+- EmailJS: Service `service_uokvg25`, Template `template_oa28y43`, Public Key `ZmnXlTrec0ZBUsiNI`
+- No analytics installed
+- No phone number listed (commented out in HTML)
 
 ---
 
 ## TODO
 
 ### Blocked — Waiting on Dru
-- [ ] **EmailJS setup** — Account created, Gmail service started (Service ID: `service_3mu8g0c`). Dru needs to click **Connect Account** in the EmailJS dashboard to authorize his Gmail via OAuth. Once connected:
-  1. Click **Create Service**
-  2. Create an email template (see template fields below)
-  3. Get Template ID and Public Key from the dashboard
-  4. Pass all 3 credentials so we can wire them into the site code
-  - **Template fields to use:** `{{from_name}}`, `{{reply_to}}`, `{{program}}`, `{{message}}`
 
-### High Priority
-- [ ] Add phone number with click-to-call for mobile
+- [ ] **Confirm EmailJS delivery** — Test email sent 2026-03-18, awaiting confirmation from Dru that it arrived in Gmail
+- [ ] **Phone number** — Need Dru's number to add click-to-call link (placeholder commented out at line 415)
+- [ ] **Trust signals content** — Need real numbers from Dru (years operating, students trained, competition wins)
+- [ ] **Testimonials** — Need real quotes from students
+
+### High Priority (no blockers)
+
+- [ ] Add `rel="noopener"` to external links (Instagram link, line 424)
 - [ ] Add JSON-LD structured data (LocalBusiness schema) for SEO
-- [ ] Add `rel="noopener"` to external links
-- [ ] Convert og-image.svg to PNG (1200x630px) for broader social platform support
+- [ ] Convert og-image.svg to PNG (1200x630px) — SVG doesn't render on Twitter/LinkedIn/iMessage
 
 ### Medium Priority
-- [ ] Add trust signals (years operating, student count, competition wins)
-- [ ] Add real testimonials
+
 - [ ] Improve CTAs — add urgency to hero, add CTA after schedule section
 - [ ] Collapsible schedule view on mobile
-- [ ] Analytics (Google Analytics or privacy-friendly alternative like Plausible)
+- [ ] Analytics (Plausible or Google Analytics)
+- [ ] Performance — lazy loading images, WebP format on S3
+- [ ] Accessibility audit (WAVE or axe DevTools, skip links, keyboard nav)
 
 ### Future / Nice to Have
-- [ ] Cloudflare Email Routing for professional email addresses (contact@, info@)
-- [ ] Blog/content section for SEO and community engagement
+
+- [ ] Cloudflare Email Routing for professional addresses (contact@, info@) — requires finishing nameserver migration
+- [ ] Blog/content section for SEO
 - [ ] Video content (class footage, coach intros)
 - [ ] Member portal
 - [ ] Success stories / before-after transformations
 
 ---
 
+## Completed
+
+- [x] Favicon with EVO branding — 2025-11-18
+- [x] Fixed redundant alt text on instructor photo — 2025-11-18
+- [x] Removed ~300 lines dead code (Events, Merchandise, Testimonials sections) — 2025-11-18
+- [x] OG meta tags, page title, meta description for SEO — 2025-11-18
+- [x] Back to Top button — 2025-11-18
+- [x] Carousel touch/swipe gestures — 2025-11-18
+- [x] Migrated hosting from AWS Amplify to GitHub Pages — 2025-11-18
+- [x] Minified CSS/JS bundles — 2025-02-14
+- [x] Branded 404.html page — 2025-02-14
+- [x] Replaced Weebly template with handcrafted static site (872 KB → 45 KB) — 2025-10-10
+- [x] Reverted broken EmailJS back to working mailto — 2026-02-17
+- [x] Pre-filled template message moved into editable textarea — 2026-02-17
+- [x] Added CLAUDE.md and project.md — 2026-02-17
+- [x] Consolidated TODO.md + CHECKLIST.md into project.md — 2026-03-18
+- [x] EmailJS integration — Gmail service connected, template created, form wired up with real credentials — 2026-03-18
+
+---
+
+## Deployment Checklist
+
+Run through after major updates or pushes to `main`:
+
+- [ ] Changes pushed to `main` branch
+- [ ] GitHub Pages build completed successfully
+- [ ] `https://evolutionmartialartsnl.com` loads over HTTPS with valid cert
+- [ ] `https://www.evolutionmartialartsnl.com` redirects correctly
+- [ ] No mixed-content warnings in dev tools
+- [ ] Quick Lighthouse scan (Desktop + Mobile) — no major regressions
+- [ ] `/missing-page` serves branded `404.html`
+- [ ] All nav links work
+- [ ] Contact form submits via EmailJS and email arrives in Gmail
+- [ ] Mobile responsive design looks good on various screen sizes
+
+---
+
 ## Notes
 
-- Edit source CSS/JS files, then regenerate minified versions. Production HTML loads only `.min.*` files.
-- Images are hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo.
-- See CHECKLIST.md for post-deployment verification steps.
+- Edit source CSS/JS files, then regenerate `.min.*` versions. No build tool — do it manually. HTML loads only minified files.
+- Images hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo.
+- Cloudflare account exists but nameservers were never switched from Route 53. This blocks email routing and CDN features.
+- EmailJS free tier: 200 requests/month, resets Apr 17. 500 emails/day limit.
+- EmailJS dashboard: dashboard.emailjs.com (logged in as Dru)
