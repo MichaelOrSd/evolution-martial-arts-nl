@@ -17,7 +17,8 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - Contact form sends via EmailJS (no email client popup) — success/error feedback inline
 - EmailJS: Service `service_uokvg25`, Template `template_oa28y43`, Public Key `ZmnXlTrec0ZBUsiNI`
 - No analytics installed
-- No phone number listed (commented out in HTML)
+- Phone: (709) 330-6894 with click-to-call
+- Schedule: 7 days/week (Mon–Sun), displayed in 4-column grid with CTA card
 
 ---
 
@@ -36,7 +37,7 @@ All cleared — see Completed section.
 
 ### Medium Priority
 
-- [ ] Improve CTAs — add urgency to hero, add CTA after schedule section
+- [ ] Improve hero CTA — add urgency ("Limited spots", etc.)
 - [ ] Collapsible schedule view on mobile
 - [ ] Analytics (Plausible or Google Analytics)
 - [ ] Performance — lazy loading images, WebP format on S3
@@ -76,6 +77,8 @@ All cleared — see Completed section.
 - [x] Added JSON-LD structured data (MartialArtsSchool schema) for SEO — 2026-03-18
 - [x] Converted og-image.svg to PNG (1200x630) for social sharing — 2026-03-18
 - [x] Created llms.txt for AI crawlers — 2026-03-18
+- [x] Updated schedule: added Friday (Kids Wrestling, Women's BJJ), Saturday Kids 4–8 9 AM, removed Tuesday Women's — 2026-03-19
+- [x] Schedule grid redesigned: 4-column layout, removed empty placeholders, added yellow CTA card — 2026-03-19
 
 ---
 
