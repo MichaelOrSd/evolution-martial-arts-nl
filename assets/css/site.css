@@ -595,6 +595,26 @@ img {
   color: var(--color-accent);
 }
 
+@media (max-width: 639px) {
+  .schedule-day.is-collapsed {
+    padding: 1rem;
+  }
+
+  .schedule-day.is-collapsed ul {
+    display: none;
+  }
+
+  .schedule-day.is-collapsed h3::after {
+    content: ' ▸';
+    font-size: 0.85em;
+  }
+
+  .schedule-day:not(.is-collapsed):not(.schedule-day--cta) h3::after {
+    content: ' ▾';
+    font-size: 0.85em;
+  }
+}
+
 .schedule-day ul {
   list-style: none;
   margin: 0;
@@ -976,6 +996,23 @@ textarea {
 .site-footer a:hover,
 .site-footer a:focus {
   color: var(--color-accent);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-accent);
+  color: #111111;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 .sr-only {

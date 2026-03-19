@@ -58,6 +58,56 @@
     });
   }
 
+  // Collapsible schedule on mobile
+  var mobileSchedule = window.matchMedia('(max-width: 639px)');
+
+  function setupCollapsible() {
+    var days = document.querySelectorAll('.schedule-day:not(.schedule-day--cta)');
+    days.forEach(function (day) {
+      var heading = day.querySelector('h3');
+      var list = day.querySelector('ul');
+      if (!heading || !list) return;
+
+      if (mobileSchedule.matches) {
+        list.hidden = true;
+        day.classList.add('is-collapsed');
+        heading.style.cursor = 'pointer';
+        heading.setAttribute('role', 'button');
+        heading.setAttribute('aria-expanded', 'false');
+      } else {
+        list.hidden = false;
+        day.classList.remove('is-collapsed');
+        heading.style.cursor = '';
+        heading.removeAttribute('role');
+        heading.removeAttribute('aria-expanded');
+      }
+    });
+  }
+
+  function handleDayClick(e) {
+    if (!mobileSchedule.matches) return;
+    var heading = e.target.closest('.schedule-day:not(.schedule-day--cta) h3');
+    if (!heading) return;
+    var day = heading.closest('.schedule-day');
+    var list = day.querySelector('ul');
+    if (!list) return;
+    var collapsed = list.hidden;
+    list.hidden = !collapsed;
+    day.classList.toggle('is-collapsed', !collapsed);
+    heading.setAttribute('aria-expanded', String(collapsed));
+  }
+
+  var scheduleWeek = document.querySelector('.schedule-week');
+  if (scheduleWeek) {
+    scheduleWeek.addEventListener('click', handleDayClick);
+    mobileSchedule.addEventListener('change', setupCollapsible);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupCollapsible);
+    } else {
+      setupCollapsible();
+    }
+  }
+
   // Back to Top button
   const backToTopBtn = document.getElementById('back-to-top');
   if (backToTopBtn) {
