@@ -99,7 +99,7 @@
         </div>
       </section>
 
-      <section class="ribbon" aria-live="polite">
+      <section class="ribbon">
         <div class="container">
           <p>
             Got a question? Email us at
@@ -500,7 +500,8 @@
             </div>
             <div class="form-row">
               <label for="contact-program">Program interest</label>
-              <select id="contact-program" name="program">
+              <select id="contact-program" name="program" required>
+                <option value="" disabled selected>Select a program</option>
                 <option value="adult-gi">Adult Gi Jiu-Jitsu</option>
                 <option value="adult-no-gi">Adult No-Gi Jiu-Jitsu</option>
                 <option value="kickboxing">Kickboxing</option>

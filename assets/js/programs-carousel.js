@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     carousel.classList.add('is-ready');
+    carousel.setAttribute('aria-roledescription', 'carousel');
     let currentIndex = 0;
 
     const getItemsPerView = () => {
