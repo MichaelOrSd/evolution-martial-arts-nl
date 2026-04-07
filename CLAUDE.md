@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Static marketing website for Evolution Martial Arts NL, a martial arts academy in St. John's, Newfoundland. Pure HTML/CSS/JavaScript — no frameworks, no build tools, no package manager.
 
 **Live site:** https://evolutionmartialartsnl.com
+**GitHub Pages URL:** https://michaelorsd.github.io/evolution-martial-arts-nl/
 
 ## Local Development
 
@@ -20,7 +21,7 @@ Then visit http://localhost:8080.
 
 ## Deployment
 
-GitHub Pages deploys automatically on push to `main`. No build step — files are served directly from the repo root. Custom domain configured via `CNAME` file.
+GitHub Pages deploys automatically on push to `main`. No build step — files are served directly from the repo root. Custom domain configured via `CNAME` file. DNS is on Route 53 (Cloudflare account exists but nameservers were never migrated).
 
 ## Architecture
 
@@ -30,7 +31,11 @@ Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule
 
 **JS** (`assets/js/`): Two scripts — `site.js` (navigation toggle, Intersection Observer fade-ins, back-to-top button, year injection) and `programs-carousel.js` (carousel with touch/swipe, dot navigation, responsive items-per-view via CSS variables). Each has a `.min.js` production version. Production HTML references the minified versions.
 
-**EmailJS** integration is inline in `index.html` (bottom). Currently uses placeholder credentials — see `SETUP-EMAIL.md` and `EMAILJS-CREDENTIALS.md` for setup. See `project.md` for full project state, TODO, and change history.
+**EmailJS** integration is inline in `index.html` (bottom) with live credentials. See `SETUP-EMAIL.md` and `EMAILJS-CREDENTIALS.md` for setup details.
+
+**SEO:** JSON-LD structured data (`MartialArtsSchool` schema) is inline in the `<head>` of `index.html`. OG meta tags and `llms.txt` (AI crawler info) are also present.
+
+**Project state:** `project.md` is the canonical tracker — current state, TODO, completed items, deployment checklist, and operational notes (EmailJS limits, DNS status, etc.).
 
 ## Key Conventions
 
