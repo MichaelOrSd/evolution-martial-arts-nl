@@ -2,7 +2,7 @@
 
 Living document for tracking the state, changes, roadmap, and notes for the Evolution Martial Arts NL website.
 
-**Client:** Dru Hillyard
+**Clients:** Dru Hillyard & Ashley Hillyard (co-owners) — Ashley cell: (709) 687-9382, no personal email on file (reach via gym inbox)
 **Site:** https://evolutionmartialartsnl.com
 **Hosting:** GitHub Pages (free, auto-deploys on push to `main`)
 **Email:** evolutionmartialartsnl@gmail.com
@@ -19,17 +19,37 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - No analytics installed
 - Phone: (709) 330-6894 with click-to-call
 - Schedule: 7 days/week (Mon–Sun), displayed in 4-column grid with CTA card
+- Women's Jiu-Jitsu on break until September 2026 (removed from Friday schedule; plan still listed in Membership)
+- Women's Kickboxing (renamed from "Women's Cardio Kickboxing") runs Saturdays 10–11 AM
+- Design critique baseline (2026-07-23): 23/40 — snapshot in `.impeccable/critique/`
 
 ---
 
 ## TODO
 
-### Blocked — Waiting on Dru
+### Blocked — Waiting on Dru / Ashley
 
 - [x] ~~**Confirm EmailJS delivery**~~ — Confirmed 2026-03-18, Dru received test email
 - [x] ~~**Phone number**~~ — (709) 330-6894 added with click-to-call — 2026-03-18
 - [ ] **Trust signals content** — 4 years in business confirmed. Still need: students trained, competition wins
 - [ ] **Testimonials** — Dru collecting quotes at next class
+- [ ] **Confirm 2026-07-23 changes** — email sent to gym inbox from michaeloreilly@me.com; awaiting Ashley's reply (mail watch running). Covers:
+  - Women's Kickboxing Saturday class length (assumed 10–11 AM, 1 hour)
+  - Women's Kickboxing price still shows $138/6-week program — switch to monthly rate if now ongoing?
+  - Add "resumes in September" note to Women's Only All Skills plan?
+  - Merch price list — send if they want merch pricing on the site
+  - Belt roster promotions + confirm "Jame Rowe" spelling (likely "James")
+- [ ] **Add Ashley's personal email to Contacts** when she replies
+- [ ] **Real photos for the site** (deferred 2026-07-23 — none available yet). Shot list: hero shot of a live class; one photo per program card (kids and women's classes at minimum); gym-interior shot near the contact form. S3 bucket already set up.
+
+### Site Review Backlog (from 2026-07-23 critique, baseline 23/40)
+
+- [ ] **P0 — Harden contact form**: submit listener only attaches if EmailJS CDN loads; blocked CDN = silent page reload, typed message lost. Attach listener unconditionally, try/catch init, show fallback error. Also add maxlengths; stop post-success JS re-filling the template text.
+- [ ] **P1 — Women's/kids program cards**: Women's Kickboxing, Women's Jiu-Jitsu, Kids Wrestling missing from Programs carousel (exist in schedule/pricing/dropdown). Consider Adults / Kids / Women structure. Unify class naming across sections; explain "Randori"/"Open Mat", Gi vs No-Gi.
+- [ ] **P1 — Pricing section**: use existing unused `.pricing` grid CSS on desktop, add "Start with a free class" CTA (`.pricing-card__cta` CSS already exists) to every plan card, preselect program in the form.
+- [ ] **P2 — Mobile/a11y**: carousel card min-height (content spills on short viewports), arrows overlap card text at 390px, 12px dots → 44px targets, keyboard support for schedule accordion, fix aria-hidden map iframe, skip link → `<main>`.
+- [ ] **Minor**: "Jame Rowe" typo (pending Ashley), "over 15+ years" and bio copy trims, ~30% dead CSS in site.css, empty `<li>` slots in schedule, hero mailto ribbon competes with CTA, dots use `aria-pressed` instead of pagination semantics.
+- [ ] **Review EMAILJS-CREDENTIALS.md** — committed to a public repo; EmailJS public keys are meant to be public but file should be reviewed/possibly removed.
 
 ### High Priority (no blockers)
 
@@ -37,8 +57,8 @@ All cleared — see Completed section.
 
 ### Medium Priority
 
-- [ ] Improve hero CTA — add urgency ("Limited spots", etc.)
-- [ ] Collapsible schedule view on mobile
+- [x] ~~Improve hero CTA~~ — done 2026-03-19
+- [x] ~~Collapsible schedule view on mobile~~ — done 2026-03-19
 - [ ] Analytics (Plausible or Google Analytics)
 - [ ] Performance — lazy loading images, WebP format on S3
 - [ ] Accessibility audit (WAVE or axe DevTools, skip links, keyboard nav)
@@ -79,6 +99,15 @@ All cleared — see Completed section.
 - [x] Created llms.txt for AI crawlers — 2026-03-18
 - [x] Updated schedule: added Friday (Kids Wrestling, Women's BJJ), Saturday Kids 4–8 9 AM, removed Tuesday Women's — 2026-03-19
 - [x] Schedule grid redesigned: 4-column layout, removed empty placeholders, added yellow CTA card — 2026-03-19
+- [x] Collapsible mobile schedule, skip link, hero CTA update — 2026-03-19
+- [x] Accessibility fixes from audit — 2026-03-19
+- [x] Schedule CTA button text visibility fix — 2026-04-07
+- [x] Renamed "Women's Cardio Kickboxing" → "Women's Kickboxing" (Courtney's copy, superseded same day by Ashley's) — 2026-07-23
+- [x] Women's Kickboxing card copy replaced with Ashley's Dutch-style description — 2026-07-23
+- [x] Added Women's Kickboxing: Saturday 10–11 AM schedule slot, JSON-LD offer, contact dropdown option, llms.txt — 2026-07-23
+- [x] Removed Women's Jiu-Jitsu from Friday schedule (on break until September) — 2026-07-23
+- [x] Full design critique run (dual-agent, headless-browser inspection + detector) — baseline 23/40, backlog captured above — 2026-07-23
+- [x] Emailed owners (gym inbox) to confirm changes, request merch price list + belt roster review — 2026-07-23
 
 ---
 
