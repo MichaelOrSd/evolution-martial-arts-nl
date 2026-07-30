@@ -1,0 +1,30 @@
+{
+  "monday": [
+    { "name": "Adult Gi", "start": "19:00", "end": "20:00", "note": "" }
+  ],
+  "tuesday": [
+    { "name": "Kickboxing", "start": "18:00", "end": "19:00", "note": "" },
+    { "name": "Adult No-Gi", "start": "19:00", "end": "20:00", "note": "" }
+  ],
+  "wednesday": [
+    { "name": "Kids Ages 4–8", "start": "17:30", "end": "18:15", "note": "" },
+    { "name": "Kids Ages 9–14", "start": "18:30", "end": "19:15", "note": "" }
+  ],
+  "thursday": [
+    { "name": "Kickboxing", "start": "18:00", "end": "19:00", "note": "" },
+    { "name": "Adult No-Gi", "start": "19:00", "end": "20:00", "note": "" }
+  ],
+  "friday": [
+    { "name": "Kids Wrestling (10–16)", "start": "18:00", "end": "18:45", "note": "" }
+  ],
+  "saturday": [
+    { "name": "Kids Ages 4–8", "start": "09:00", "end": "09:45", "note": "" },
+    { "name": "Women's Kickboxing", "start": "10:00", "end": "11:00", "note": "" },
+    { "name": "Adult Gi", "start": "11:00", "end": "12:00", "note": "" },
+    { "name": "MMA Comp. Team", "start": "12:00", "end": "13:00", "note": "" }
+  ],
+  "sunday": [
+    { "name": "Kickboxing", "start": "11:00", "end": "12:00", "note": "" },
+    { "name": "Open Mat", "start": "12:00", "end": "13:00", "note": "" }
+  ]
+}

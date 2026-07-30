@@ -11,21 +11,28 @@ Static marketing website for Evolution Martial Arts NL, a martial arts academy i
 
 ## Local Development
 
-No build step required. Serve files with any static server:
+For CSS/JS work, serving the repo root still works (`python -m http.server 8080`) because `index.html` keeps real content between the BUILD markers as a fallback.
+
+To preview exactly what deploys (content generated from `content/*.json`):
 
 ```bash
-python -m http.server 8080
+node scripts/build.js
+python3 -m http.server 8080 --directory dist
 ```
-
-Then visit http://localhost:8080.
 
 ## Deployment
 
-GitHub Pages deploys automatically on push to `main`. No build step — files are served directly from the repo root. Custom domain configured via `CNAME` file. DNS is on Route 53 (Cloudflare account exists but nameservers were never migrated).
+Pushes to `main` trigger `.github/workflows/deploy.yml`: it runs `node scripts/build.js` (zero dependencies) and deploys `dist/` via GitHub Pages Actions. The build injects `content/*.json` into `index.html` (between `<!-- BUILD:* -->` markers), regenerates the Programs/Schedule/Membership sections of `llms.txt`, and regenerates the JSON-LD block. If content validation fails, the deploy is skipped (previous version stays live) and an issue is opened automatically. Custom domain configured via `CNAME` file (copied into `dist/`). DNS is on Route 53 (Cloudflare account exists but nameservers were never migrated).
+
+## Client Content Editing (Pages CMS)
+
+Dru & Ashley edit programs, schedule, belt roster, and pricing themselves via https://app.pagescms.org (invited by email — no GitHub accounts). `.pages.yml` defines the editing forms; `EDITING.md` is their cheat sheet. Their saves commit to `main` and auto-deploy in ~1–2 minutes.
+
+**IMPORTANT:** Content for programs, schedule, team/belts, and memberships lives in `content/*.json` — edit those files, never the generated zones of `index.html` (between `<!-- BUILD:* -->` markers) or the mirrored sections of `llms.txt`. The committed HTML between markers is a fallback snapshot and may lag behind live content. `content/site.json` holds dev-curated SEO data (JSON-LD offers, llms.txt program lines) and is hidden from the CMS. If you rename a JSON key, update `.pages.yml` and `scripts/build.js` together.
 
 ## Architecture
 
-Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule, Team, Membership carousel, Contact form, Footer. All content lives in one HTML file.
+Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule, Team, Membership carousel, Contact form, Footer. Programs, schedule, team/belts, and membership content lives in `content/*.json` and is injected into `index.html` at deploy time by `scripts/build.js` (see Client Content Editing below); everything else is authored directly in the HTML.
 
 **CSS** (`assets/css/`): Two stylesheets — `site.css` (main layout/design system) and `programs-carousel.css` (carousel component). Each has a `.min.css` production version. Production HTML references the minified versions.
 

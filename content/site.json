@@ -1,0 +1,22 @@
+{
+  "_comment": "Dev-maintained SEO/AI-crawler data. NOT exposed in Pages CMS. The JSON-LD offer catalog and llms.txt Programs section are curated lists (they include programs without a card, e.g. Women's Jiu-Jitsu) — edit here when programs genuinely change.",
+  "seo_offers": [
+    "Gi Jiu-Jitsu Adult",
+    "No-Gi Jiu-Jitsu Adult",
+    "Kickboxing",
+    "Kids Jiu-Jitsu",
+    "Kids Wrestling",
+    "Women's Jiu-Jitsu",
+    "Women's Kickboxing"
+  ],
+  "llms_program_lines": [
+    "Gi Jiu-Jitsu Adult (14+): Structured drills, positional rounds, and live sparring",
+    "No-Gi Jiu-Jitsu Adult (14+): BJJ, wrestling, and submission fundamentals",
+    "Kickboxing (14+): Dutch-style pad work, bag drills, and conditioning",
+    "Kids Jiu-Jitsu (Ages 4-8 and 9-14): Confidence-building, self-defence foundations",
+    "Kids Wrestling (Ages 10-16): Wrestling fundamentals",
+    "Women's Jiu-Jitsu: Women-led BJJ class for all experience levels (on break until September 2026)",
+    "Women's Kickboxing: Dutch-style kickboxing taught by a female instructor in a women-only environment",
+    "Randori / Open Mat: Coach-supervised sparring sessions"
+  ]
+}

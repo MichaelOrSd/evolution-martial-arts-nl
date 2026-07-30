@@ -22,6 +22,7 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - Women's Jiu-Jitsu on break until September 2026 (removed from Friday schedule; plan still listed in Membership)
 - Women's Kickboxing (renamed from "Women's Cardio Kickboxing") runs Saturdays 10–11 AM
 - Design critique baseline (2026-07-23): 23/40 — snapshot in `.impeccable/critique/`
+- Client self-editing via Pages CMS (app.pagescms.org): programs/schedule/belts/pricing live in `content/*.json`, built + deployed by GitHub Actions (`scripts/build.js` → `dist/`). See EDITING.md (client guide) and CLAUDE.md.
 
 ---
 
@@ -53,7 +54,12 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 
 ### High Priority (no blockers)
 
-All cleared — see Completed section.
+- [ ] **CMS go-live steps** (after merging `feat/cms` to `main`):
+  1. Repo Settings → Pages → Source: **GitHub Actions** (was "Deploy from a branch") — do this right after the first successful Action run
+  2. Verify live site unchanged, custom domain resolves, `/missing-page` → 404
+  3. Sign in at app.pagescms.org with GitHub, open the repo, confirm all four collections render, do a round-trip test edit
+  4. Invite Dru & Ashley by email (Ashley's personal email still pending — see Blocked). Optional: enable `settings.commit.identity: user` in `.pages.yml` to attribute commits to them (puts their name/email in public commit metadata — ask first)
+  5. Send them EDITING.md
 
 ### Medium Priority
 
