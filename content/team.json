@@ -8,7 +8,11 @@
   "belts": [
     {
       "belt": "Brown Belt",
-      "members": ["Ashley Hillyard"]
+      "members": [
+        "Ashley Hillyard",
+        "Matthew Peyton",
+        "Owen Warren"
+      ]
     },
     {
       "belt": "Purple Belt",
@@ -17,23 +21,20 @@
         "Dawson Sampson",
         "Gavin Andrews",
         "Jake Reid",
-        "Jame Rowe",
+        "James Rowe",
         "Jason Williams",
         "Jeremy Budgell",
-        "Kirk Kendall",
-        "Matthew Peyton"
+        "Kirk Kendall"
       ]
     },
     {
       "belt": "Blue Belt",
       "members": [
-        "Darrin Hodder",
         "Erin Christopher",
         "Gianni Costanzo",
         "John Cooper",
         "Kristen Nolan",
         "Owen Savage",
-        "Owen Warren",
         "Rufaro Gundu",
         "Sean McCarthy",
         "Simon Howard"
