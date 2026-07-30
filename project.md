@@ -54,12 +54,17 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 
 ### High Priority (no blockers)
 
-- [ ] **CMS go-live steps** (after merging `feat/cms` to `main`):
-  1. Repo Settings → Pages → Source: **GitHub Actions** (was "Deploy from a branch") — do this right after the first successful Action run
-  2. Verify live site unchanged, custom domain resolves, `/missing-page` → 404
-  3. Sign in at app.pagescms.org with GitHub, open the repo, confirm all four collections render, do a round-trip test edit
-  4. Invite Dru & Ashley by email (Ashley's personal email still pending — see Blocked). Optional: enable `settings.commit.identity: user` in `.pages.yml` to attribute commits to them (puts their name/email in public commit metadata — ask first)
-  5. Send them EDITING.md
+- [ ] **CMS go-live** — nearly done (2026-07-30):
+  - [x] Pages source switched to GitHub Actions; live site verified unchanged; 404 OK
+  - [x] Pages CMS GitHub App installed (scoped to this repo); all four collections render
+  - [x] Round-trip verified — Dru/Ashley's first real edits (belt promotions, James Rowe fix) deployed
+  - [x] Heads-up email + editing guide sent to gym inbox — 2026-07-30 (went out from ma.oreilly@icloud.com; Mail used the default iCloud alias instead of michaeloreilly@me.com)
+  - [ ] **Invite `evolutionmartialartsnl@gmail.com` in Pages CMS** (Settings → Collaborators — browser step). Decision: ONE shared login on the gym email (they share it); skip `commit.identity: user`
+  - [ ] Confirm they can log in and make a first edit themselves
+- [ ] **AWS handover prep** (do NOT mention to clients until prepped — Michael's call 2026-07-30):
+  - Goal: gym's own AWS account + their credit card; Michael's account back to $0
+  - Steps: they create an AWS account → transfer Route 53 domain registration → recreate hosted zone + copy records → new S3 bucket in their account, copy images, update image URLs in site, delete old bucket
+  - Note: per-resource billing to different cards within one AWS account is not possible — separate account is the only clean split
 
 ### Medium Priority
 
