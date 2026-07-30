@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-30
+
+### Client content editing (Pages CMS + build pipeline)
+- Extracted programs, weekly schedule, membership pricing, and team/belt roster into `content/*.json`
+- Added `scripts/build.js` (zero dependencies): validates content, injects it into `index.html` between `BUILD` markers, and regenerates `llms.txt` sections and the JSON-LD block from the same source
+- Added `.github/workflows/deploy.yml` — builds `dist/` and deploys via GitHub Pages Actions; invalid content fails the build (previous deploy stays live) and auto-opens an issue
+- Switched GitHub Pages source from branch deploy to GitHub Actions
+- Added `.pages.yml` so the owners edit content at app.pagescms.org (shared login on the gym email — no GitHub accounts needed)
+- Added `EDITING.md` client guide; updated README, CLAUDE.md, project.md
+- Content updates shipped same day: belt promotions (Matthew Peyton → Brown; Owen Warren → Purple), "Jame Rowe" → "James Rowe"
+
 ## 2025-11-18
 
 ### Migration to GitHub Pages

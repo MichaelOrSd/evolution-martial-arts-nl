@@ -1,29 +1,37 @@
 # Evolution Martial Arts NL Static Site
 
-This repository contains a cleaned static export of the Evolution Martial Arts NL website. The site is pure HTML, CSS, and JavaScript with no external builders or CMS dependencies.
+This repository contains the Evolution Martial Arts NL website. The site is pure HTML, CSS, and JavaScript. Client-editable content (programs, schedule, memberships, belt roster) lives in `content/*.json`, edited by the owners through [Pages CMS](https://pagescms.org) and injected into the page by a dependency-free build script at deploy time.
 
 ## Project structure
 
-- `index.html` – main entry point for the marketing site.
+- `index.html` – main entry point; content zones are generated between `<!-- BUILD:* -->` markers.
+- `content/` – editable content data (JSON); `site.json` is dev-maintained SEO data.
+- `scripts/build.js` – zero-dependency build: validates content, generates HTML/llms.txt/JSON-LD into `dist/`.
+- `.pages.yml` – Pages CMS editing-form configuration.
+- `EDITING.md` – plain-English editing guide for the owners.
 - `assets/css/` – author-friendly and minified stylesheets.
 - `assets/js/` – author-friendly and minified JavaScript (with source map).
-- `assets/og-image.svg` – vector social preview artwork used for sharing cards.
 - `CNAME` – GitHub Pages custom domain configuration.
-- `TODO.md` – list of potential site improvements and enhancements.
+- `project.md` – canonical project tracker.
 
 ## Local preview
 
-No build step is required. Open `index.html` in a browser or run a simple static server, e.g.:
+For CSS/JS work, the repo root serves as-is (committed fallback content):
 
 ```bash
 python -m http.server 8080
 ```
 
-Then visit <http://localhost:8080>.
+To preview exactly what deploys:
+
+```bash
+node scripts/build.js
+python3 -m http.server 8080 --directory dist
+```
 
 ## Hosting on GitHub Pages
 
-The site is hosted on GitHub Pages and automatically deploys when changes are pushed to the `main` branch.
+Pushes to `main` run `.github/workflows/deploy.yml`, which builds `dist/` and deploys it via GitHub Pages (Actions source). Invalid content fails the build — the previous deploy stays live and an issue is opened automatically.
 
 - **Live site**: https://evolutionmartialartsnl.com
 - **GitHub Pages URL**: https://michaelorsd.github.io/evolution-martial-arts-nl/
@@ -49,4 +57,4 @@ The custom domain is configured via the `CNAME` file in the repository root. To 
 
 ### Deployment
 
-Changes pushed to `main` are automatically deployed within seconds. No build step is required.
+Changes pushed to `main` (including Pages CMS saves) build and deploy automatically in about 60–90 seconds.
