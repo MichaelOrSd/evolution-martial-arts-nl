@@ -1,0 +1,76 @@
+{
+  "plans": [
+    {
+      "name": "Unlimited Grappling Training",
+      "price": "138",
+      "period": "/month",
+      "highlight": false,
+      "description": "Train in every gi and no-gi class each week, with daily open mat access and member-only seminars.",
+      "features": [
+        "All gi & no-gi classes included",
+        "Daily open mat access",
+        "Member-only seminars"
+      ]
+    },
+    {
+      "name": "Unlimited Grappling & Striking",
+      "price": "172.50",
+      "period": "/month",
+      "highlight": true,
+      "description": "Access all grappling and striking sessions, get competition prep support, and add conditioning and mobility when you need it.",
+      "features": [
+        "Every grappling & striking class",
+        "Competition prep support",
+        "Flexible conditioning add-ons"
+      ]
+    },
+    {
+      "name": "2 Classes Per Week",
+      "price": "80.50",
+      "period": "/month",
+      "highlight": false,
+      "description": "Pick any two weekly classes to focus your training, receive targeted technical coaching, and enjoy open mat on your training days.",
+      "features": [
+        "Choose any two sessions weekly",
+        "Targeted technical coaching",
+        "Open mat access on training days"
+      ]
+    },
+    {
+      "name": "Women's Only All Skills",
+      "price": "63.25",
+      "period": "/month",
+      "highlight": false,
+      "description": "Join a weekly women-led BJJ class that welcomes every experience level and builds confidence through supportive drilling.",
+      "features": [
+        "Weekly women-led BJJ class",
+        "Welcoming to every experience level",
+        "Confidence-building drills"
+      ]
+    },
+    {
+      "name": "Kids Jiu Jitsu",
+      "price": "74.75",
+      "period": "/month",
+      "highlight": false,
+      "description": "Enroll in one structured youth session each week that develops focus, discipline, and success in a small class environment.",
+      "features": [
+        "One structured youth session weekly",
+        "Small class environment",
+        "Develop focus, discipline, and coordination"
+      ]
+    },
+    {
+      "name": "Women's Kickboxing",
+      "price": "138",
+      "period": "/6-week program",
+      "highlight": false,
+      "description": "The same Dutch-style kickboxing technique as our co-ed class, taught by a female instructor in a women's-only environment. Classes welcome every fitness level and deliver a serious sweat.",
+      "features": [
+        "Dutch-style pad and bag work",
+        "High-energy conditioning blocks",
+        "Open to every fitness level"
+      ]
+    }
+  ]
+}

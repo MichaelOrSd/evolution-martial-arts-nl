@@ -1,0 +1,259 @@
+# Pages CMS configuration — https://pagescms.org/docs/
+# Editing UI for Dru & Ashley at https://app.pagescms.org
+# Each entry below maps a content/*.json file to a friendly editing form.
+# content/site.json is deliberately NOT listed (dev-maintained SEO data).
+
+components:
+  day_classes:
+    type: object
+    label: Classes
+    list:
+      collapsible:
+        collapsed: false
+        summary: "{name}"
+    fields:
+      - name: name
+        label: Class name
+        type: string
+        required: true
+      - name: start
+        label: Start time
+        type: select
+        required: true
+        options:
+          values: &time_values
+            - { name: "06:00", label: "6:00 AM" }
+            - { name: "06:15", label: "6:15 AM" }
+            - { name: "06:30", label: "6:30 AM" }
+            - { name: "06:45", label: "6:45 AM" }
+            - { name: "07:00", label: "7:00 AM" }
+            - { name: "07:15", label: "7:15 AM" }
+            - { name: "07:30", label: "7:30 AM" }
+            - { name: "07:45", label: "7:45 AM" }
+            - { name: "08:00", label: "8:00 AM" }
+            - { name: "08:15", label: "8:15 AM" }
+            - { name: "08:30", label: "8:30 AM" }
+            - { name: "08:45", label: "8:45 AM" }
+            - { name: "09:00", label: "9:00 AM" }
+            - { name: "09:15", label: "9:15 AM" }
+            - { name: "09:30", label: "9:30 AM" }
+            - { name: "09:45", label: "9:45 AM" }
+            - { name: "10:00", label: "10:00 AM" }
+            - { name: "10:15", label: "10:15 AM" }
+            - { name: "10:30", label: "10:30 AM" }
+            - { name: "10:45", label: "10:45 AM" }
+            - { name: "11:00", label: "11:00 AM" }
+            - { name: "11:15", label: "11:15 AM" }
+            - { name: "11:30", label: "11:30 AM" }
+            - { name: "11:45", label: "11:45 AM" }
+            - { name: "12:00", label: "12:00 PM" }
+            - { name: "12:15", label: "12:15 PM" }
+            - { name: "12:30", label: "12:30 PM" }
+            - { name: "12:45", label: "12:45 PM" }
+            - { name: "13:00", label: "1:00 PM" }
+            - { name: "13:15", label: "1:15 PM" }
+            - { name: "13:30", label: "1:30 PM" }
+            - { name: "13:45", label: "1:45 PM" }
+            - { name: "14:00", label: "2:00 PM" }
+            - { name: "14:15", label: "2:15 PM" }
+            - { name: "14:30", label: "2:30 PM" }
+            - { name: "14:45", label: "2:45 PM" }
+            - { name: "15:00", label: "3:00 PM" }
+            - { name: "15:15", label: "3:15 PM" }
+            - { name: "15:30", label: "3:30 PM" }
+            - { name: "15:45", label: "3:45 PM" }
+            - { name: "16:00", label: "4:00 PM" }
+            - { name: "16:15", label: "4:15 PM" }
+            - { name: "16:30", label: "4:30 PM" }
+            - { name: "16:45", label: "4:45 PM" }
+            - { name: "17:00", label: "5:00 PM" }
+            - { name: "17:15", label: "5:15 PM" }
+            - { name: "17:30", label: "5:30 PM" }
+            - { name: "17:45", label: "5:45 PM" }
+            - { name: "18:00", label: "6:00 PM" }
+            - { name: "18:15", label: "6:15 PM" }
+            - { name: "18:30", label: "6:30 PM" }
+            - { name: "18:45", label: "6:45 PM" }
+            - { name: "19:00", label: "7:00 PM" }
+            - { name: "19:15", label: "7:15 PM" }
+            - { name: "19:30", label: "7:30 PM" }
+            - { name: "19:45", label: "7:45 PM" }
+            - { name: "20:00", label: "8:00 PM" }
+            - { name: "20:15", label: "8:15 PM" }
+            - { name: "20:30", label: "8:30 PM" }
+            - { name: "20:45", label: "8:45 PM" }
+            - { name: "21:00", label: "9:00 PM" }
+            - { name: "21:15", label: "9:15 PM" }
+            - { name: "21:30", label: "9:30 PM" }
+            - { name: "21:45", label: "9:45 PM" }
+      - name: end
+        label: End time
+        type: select
+        required: true
+        options:
+          values: *time_values
+      - name: note
+        label: Note (optional)
+        type: string
+        description: 'Shown in brackets after the class, e.g. "on break until September"'
+
+content:
+  - name: programs
+    label: Programs
+    type: file
+    path: content/programs.json
+    format: json
+    fields:
+      - name: programs
+        label: Program cards
+        type: object
+        list:
+          min: 1
+          max: 8
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: eyebrow
+            label: Category tag
+            type: string
+            required: true
+            description: 'Small text above the title, e.g. "Adults • Gi"'
+          - name: title
+            label: Program name
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+            description: One or two sentences describing the class.
+          - name: highlights
+            label: Bullet points
+            type: string
+            list:
+              min: 1
+              max: 4
+            description: Short selling points shown as bullets (3 looks best).
+
+  - name: schedule
+    label: Weekly Schedule
+    type: file
+    path: content/schedule.json
+    format: json
+    fields:
+      - name: monday
+        label: Monday
+        component: day_classes
+      - name: tuesday
+        label: Tuesday
+        component: day_classes
+      - name: wednesday
+        label: Wednesday
+        component: day_classes
+      - name: thursday
+        label: Thursday
+        component: day_classes
+      - name: friday
+        label: Friday
+        component: day_classes
+      - name: saturday
+        label: Saturday
+        component: day_classes
+      - name: sunday
+        label: Sunday
+        component: day_classes
+
+  - name: memberships
+    label: Membership Pricing
+    type: file
+    path: content/memberships.json
+    format: json
+    fields:
+      - name: plans
+        label: Membership plans
+        type: object
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{name} — ${price}{period}"
+        fields:
+          - name: name
+            label: Plan name
+            type: string
+            required: true
+          - name: price
+            label: Price (numbers only, no $)
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d+(\\.\\d{2})?$"
+              message: "Enter just the number, like 138 or 172.50"
+          - name: period
+            label: Billing period
+            type: string
+            required: true
+            description: 'Usually "/month". Also e.g. "/6-week program".'
+          - name: highlight
+            label: Featured plan (gold card)
+            type: boolean
+            description: Only one plan should be featured.
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: features
+            label: What's included
+            type: string
+            list:
+              min: 1
+              max: 4
+
+  - name: team
+    label: Team & Belt Roster
+    type: file
+    path: content/team.json
+    format: json
+    fields:
+      - name: lead_instructor
+        label: Lead Instructor
+        type: object
+        fields:
+          - name: heading
+            label: Section heading
+            type: string
+            required: true
+          - name: name
+            label: Name
+            type: string
+            required: true
+          - name: photo
+            label: Photo URL
+            type: string
+            readonly: true
+            description: Ask Michael to change the photo.
+          - name: bio
+            label: Bio
+            type: text
+            required: true
+            description: Shown after the name. Update when ranks or experience change.
+      - name: belts
+        label: Belt Roster
+        type: object
+        list:
+          collapsible:
+            collapsed: false
+            summary: "{belt}"
+        fields:
+          - name: belt
+            label: Belt
+            type: select
+            required: true
+            options:
+              values: [Black Belt, Brown Belt, Purple Belt, Blue Belt, White Belt]
+          - name: members
+            label: Members
+            type: string
+            list: true
+            description: One name per entry. To promote someone, remove their name here and add it under the higher belt.

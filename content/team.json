@@ -1,0 +1,43 @@
+{
+  "lead_instructor": {
+    "heading": "Lead Instructor",
+    "name": "Dru Hillyard",
+    "photo": "https://evolutionbjj.s3.ca-central-1.amazonaws.com/S3+Photos/Dru-Hillyard-headshot-2.jpg",
+    "bio": "Dru is a Black Belt under Prof. Dan Guillemette and Prof. Steve Burgess and has been studying Brazilian Jiu-Jitsu (BJJ) for over 15+ years. To date Dru has over 8 years experience instructing BJJ not to mention many more years of experience as an instructor in the Canadian Armed Forces."
+  },
+  "belts": [
+    {
+      "belt": "Brown Belt",
+      "members": ["Ashley Hillyard"]
+    },
+    {
+      "belt": "Purple Belt",
+      "members": [
+        "Adam Reynolds",
+        "Dawson Sampson",
+        "Gavin Andrews",
+        "Jake Reid",
+        "Jame Rowe",
+        "Jason Williams",
+        "Jeremy Budgell",
+        "Kirk Kendall",
+        "Matthew Peyton"
+      ]
+    },
+    {
+      "belt": "Blue Belt",
+      "members": [
+        "Darrin Hodder",
+        "Erin Christopher",
+        "Gianni Costanzo",
+        "John Cooper",
+        "Kristen Nolan",
+        "Owen Savage",
+        "Owen Warren",
+        "Rufaro Gundu",
+        "Sean McCarthy",
+        "Simon Howard"
+      ]
+    }
+  ]
+}
