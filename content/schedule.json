@@ -1,5 +1,6 @@
 {
   "monday": [
+    { "name": "Adult Gi", "start": "06:30", "end": "07:30", "note": "" },
     { "name": "Adult Gi", "start": "19:00", "end": "20:00", "note": "" }
   ],
   "tuesday": [
