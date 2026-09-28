@@ -10,6 +10,10 @@
   --color-dark: #000000;
   --color-bg: #050505;
   --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --tide-deep: #06122c;
+  --tide-navy: #0a1d45;
+  --tide-cyan: #2bb5f0;
+  --tide-light: #a8dcf5;
   --hero-image: url('https://evolutionbjj.s3.ca-central-1.amazonaws.com/S3+Photos/Evolution-BJJ-Logo-St-John_webImage16-9.png');
 }
 
@@ -315,6 +319,272 @@ img {
   padding: 0.85rem 0;
   text-align: center;
   font-weight: 600;
+}
+
+/* Event banner + section (content/event.json) — High Tide colours, not the gym's gold */
+.event-banner {
+  background: var(--tide-navy);
+  color: var(--color-white);
+  border-bottom: 1px solid rgba(43, 181, 240, 0.35);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.event-banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.65rem 0;
+}
+
+.event-banner__label {
+  margin: 0;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--tide-cyan);
+  color: var(--tide-deep);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.event-banner__text {
+  margin: 0;
+  flex: 1 1 18rem;
+}
+
+.event-banner__text strong {
+  margin-right: 0.35rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.event-banner__text span {
+  display: inline-block;
+  color: var(--tide-light);
+}
+
+.event-banner__cta,
+.event .button.primary {
+  background: var(--tide-cyan);
+  color: var(--tide-deep);
+}
+
+.event-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.event-banner__cta:hover,
+.event-banner__cta:focus,
+.event .button.primary:hover,
+.event .button.primary:focus {
+  background: var(--color-white);
+  color: var(--tide-deep);
+  text-decoration: none;
+}
+
+.event-banner__cta:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.event {
+  background: linear-gradient(180deg, var(--tide-deep), var(--color-primary));
+  scroll-margin-top: 5rem;
+}
+
+.event__logo {
+  width: clamp(170px, 34vw, 240px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+}
+
+.event__eyebrow {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tide-cyan) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.event .section-header > p:last-child {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.event__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 960px) {
+  .event__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.event-panel {
+  background: rgba(10, 29, 69, 0.55);
+  border: 1px solid rgba(43, 181, 240, 0.25);
+  border-radius: 18px;
+  padding: clamp(1.4rem, 4vw, 2rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.event-panel h3 {
+  margin: 0.5rem 0 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.event-panel h3:first-child,
+.event__fees-block h3 {
+  margin-top: 0;
+}
+
+.event-panel p {
+  margin: 0;
+}
+
+.event-panel a:not(.button) {
+  color: var(--tide-cyan);
+}
+
+.event__facts {
+  margin: 0;
+  display: grid;
+}
+
+.event__facts div {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(43, 181, 240, 0.18);
+}
+
+.event__facts div:first-child {
+  padding-top: 0;
+}
+
+.event__facts dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tide-cyan);
+}
+
+.event__facts dd {
+  margin: 0.2rem 0 0;
+  color: var(--color-text-light);
+}
+
+.event__rules {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-text-light);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.event__rules li::marker {
+  color: var(--tide-cyan);
+}
+
+.event__fees-block {
+  display: grid;
+  gap: 1rem;
+}
+
+.event__fees {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.event__fees th,
+.event__fees td {
+  padding: 0.6rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(43, 181, 240, 0.18);
+  vertical-align: top;
+}
+
+.event__fees thead th {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tide-cyan);
+}
+
+.event__fees th span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.event__fees td {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.event__fees tr.is-current th,
+.event__fees tr.is-current td {
+  background: rgba(43, 181, 240, 0.14);
+}
+
+.event__note {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.event__deadline {
+  font-weight: 700;
+}
+
+.event-panel--register {
+  grid-column: 1 / -1;
+}
+
+.event__open {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.event__closed,
+.event.is-closed .event__open,
+.event.is-closed .event-panel--fees {
+  display: none;
+}
+
+.event.is-closed .event-panel {
+  grid-column: 1 / -1;
+}
+
+.event.is-closed .event__closed {
+  display: block;
 }
 
 /* Make the hero email link black in all states */

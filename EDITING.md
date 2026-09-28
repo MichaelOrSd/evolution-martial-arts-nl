@@ -1,14 +1,16 @@
 # How to Edit the Website (for Dru & Ashley)
 
-You can change the website's programs, schedule, belt roster, and membership
-pricing yourself — no coding needed.
+You can change the website's programs, schedule, belt roster, membership
+pricing, and upcoming events yourself — no coding needed.
 
 ## Logging in
 
 1. Go to **https://app.pagescms.org**
 2. Sign in with the **email address** your invite was sent to (check your inbox
    for the invitation the first time).
-3. Open **evolution-martial-arts-nl**. You'll see four sections in the sidebar:
+3. Open **evolution-martial-arts-nl**. You'll see five sections in the sidebar:
+   - **Event / Tournament** — the blue banner at the very top and the event
+     section below the hero
    - **Programs** — the five program cards on the site
    - **Weekly Schedule** — days, class times, class names
    - **Membership Pricing** — the pricing cards
@@ -41,6 +43,17 @@ refresh to see the newest version).
 1. Open **Membership Pricing** and click the plan.
 2. Edit **Price** — just the number, like `138` or `172.50` (no dollar sign).
 3. **Billing period** is the text after the price, usually `/month`. Save.
+
+### Announce an event (tournament, seminar)
+1. Open **Event / Tournament**.
+2. Update the **Event date**, the banner text, and the section details
+   (venue, key info, match rules, registration fees).
+3. Tick **Show event**. Save.
+- Registration fee tiers disappear from the site on their own once their
+  deadline passes, and the last deadline switches the section to
+  "Registration is closed".
+- The banner and section hide themselves the day after the event. To take them
+  down early, untick **Show event** and save.
 
 ### Update Dru's bio
 Open **Team & Belt Roster** → **Lead Instructor** → edit **Bio**. Save.

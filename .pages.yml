@@ -98,6 +98,130 @@ components:
         description: 'Shown in brackets after the class, e.g. "on break until September"'
 
 content:
+  - name: event
+    label: Event / Tournament
+    type: file
+    path: content/event.json
+    format: json
+    fields:
+      - name: show
+        label: Show event
+        type: boolean
+        description: Turn off to hide the top banner and the event section. Both also hide automatically the day after the event date.
+      - name: label
+        label: Banner tag
+        type: string
+        description: 'Small tag on the left of the top banner, e.g. "Upcoming tournament"'
+      - name: title
+        label: Banner title
+        type: string
+        required: true
+      - name: date
+        label: Event date
+        type: date
+        required: true
+      - name: details
+        label: Banner details
+        type: string
+        description: 'Short line shown after the date, e.g. "Holiday Inn St. John's · $500 absolute prizes"'
+      - name: button_text
+        label: Banner button text
+        type: string
+        required: true
+        description: The button scrolls down to the event section.
+      - name: heading
+        label: Section heading
+        type: string
+        required: true
+      - name: logo
+        label: Logo
+        type: string
+        readonly: true
+        description: Ask Michael to change the logo.
+      - name: venue
+        label: Venue
+        type: string
+        required: true
+      - name: intro
+        label: Intro
+        type: text
+        required: true
+      - name: facts
+        label: Key info
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Label
+            type: string
+            required: true
+          - name: text
+            label: Text
+            type: text
+            required: true
+      - name: rules
+        label: Match rules
+        type: string
+        list: true
+      - name: fees
+        label: Registration fees
+        type: object
+        description: Oldest deadline first. Tiers disappear from the site automatically after their deadline.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name} — until {ends}"
+        fields:
+          - name: name
+            label: Tier name
+            type: string
+            required: true
+          - name: ends
+            label: Deadline
+            type: date
+            required: true
+          - name: kids
+            label: Kids price (numbers only)
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d+(\\.\\d{2})?$"
+              message: "Enter just the number, like 55"
+          - name: adults
+            label: 16 & up price (numbers only)
+            type: string
+            required: true
+            pattern:
+              regex: "^\\d+(\\.\\d{2})?$"
+              message: "Enter just the number, like 65"
+      - name: fees_note
+        label: Fees note
+        type: text
+      - name: register_email
+        label: Registration email
+        type: string
+        required: true
+      - name: register_subject
+        label: Registration email subject
+        type: string
+        description: 'Pre-filled subject so entries are easy to find and sort, e.g. "High Tide Registration – Gi – Nov 15, 2026 – [Athlete name]"'
+      - name: register_fields
+        label: Pre-filled email questions
+        type: string
+        description: Lines pre-filled into the email when someone taps "Email your registration" (not shown on the page).
+        list:
+          min: 1
+      - name: email_reminder
+        label: Payment reminder in the email
+        type: text
+        description: Added to the bottom of the pre-filled registration email, e.g. where to e-Transfer.
+      - name: payment_note
+        label: Payment note
+        type: text
+
   - name: programs
     label: Programs
     type: file

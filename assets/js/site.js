@@ -7,6 +7,34 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // Upcoming event: the build only re-checks dates on deploy, so hide anything
+  // past its date here, drop expired fee tiers, and highlight the current one
+  const now = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+
+  document.querySelectorAll('[data-event-date]').forEach((el) => {
+    if (today > el.dataset.eventDate) {
+      el.remove();
+    }
+  });
+
+  const eventSection = document.getElementById('event');
+  if (eventSection) {
+    if (eventSection.dataset.registrationCloses && today > eventSection.dataset.registrationCloses) {
+      eventSection.classList.add('is-closed');
+    }
+    let currentTier = null;
+    eventSection.querySelectorAll('tr[data-ends]').forEach((row) => {
+      if (today > row.dataset.ends) {
+        row.remove();
+      } else if (!currentTier) {
+        currentTier = row;
+        row.classList.add('is-current');
+      }
+    });
+  }
+
   if (toggle && nav) {
     const links = nav.querySelectorAll('a[href^="#"]');
 

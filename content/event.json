@@ -1,0 +1,72 @@
+{
+  "show": true,
+  "label": "Upcoming tournament",
+  "title": "High Tide Gi Tournament",
+  "date": "2026-11-15",
+  "details": "Holiday Inn St. John's · $500 absolute prizes",
+  "button_text": "Tournament info",
+  "heading": "High Tide Submission Series: Gi Tournament",
+  "logo": "assets/img/high-tide-logo.webp",
+  "venue": "Holiday Inn St. John's Conference Centre",
+  "intro": "High Tide is back with a bigger venue, more mat space for a shorter day, more activities for kids, and the same cash and prizes you've come to love. Every competitor gets a free registration kit.",
+  "facts": [
+    {
+      "label": "Divisions",
+      "text": "Kids, teens, and adults, plus an absolute division each for men and women."
+    },
+    {
+      "label": "Prizes",
+      "text": "$500 cash to the winners of the men's and women's absolute divisions."
+    },
+    {
+      "label": "The day",
+      "text": "Kids divisions start in the morning and run into the afternoon. Adult divisions run into the afternoon, finishing with the absolutes."
+    }
+  ],
+  "rules": [
+    "Adults & high school (16+): 10-minute rounds",
+    "Ages 12–15: 6-minute rounds",
+    "Kids 11 & under: 4-minute rounds",
+    "No submission in time? The referee decides.",
+    "Absolutes have no time limit and must end in a submission."
+  ],
+  "fees": [
+    {
+      "name": "Early bird",
+      "ends": "2026-10-02",
+      "kids": "55",
+      "adults": "65"
+    },
+    {
+      "name": "Regular",
+      "ends": "2026-10-16",
+      "kids": "65",
+      "adults": "75"
+    },
+    {
+      "name": "Regular",
+      "ends": "2026-10-30",
+      "kids": "75",
+      "adults": "85"
+    },
+    {
+      "name": "Late",
+      "ends": "2026-11-12",
+      "kids": "85",
+      "adults": "100"
+    }
+  ],
+  "fees_note": "Fees are per division. The absolute is a separate division, and you must also compete in your regular division to enter it. Organizers may adjust weight classes to keep divisions even.",
+  "register_email": "hightidebjj@gmail.com",
+  "register_subject": "High Tide Registration – Gi – Nov 15, 2026 – [Athlete name]",
+  "register_fields": [
+    "Athlete name",
+    "Athlete age (as of November 15, 2026)",
+    "Belt rank",
+    "Home club",
+    "Current weight",
+    "Adults: are you also registering for absolute?"
+  ],
+  "email_reminder": "REMINDER: Your registration isn't accepted until payment is received. Please e-Transfer your fee to hightidebjj@gmail.com (password: tournament). Fees are per division.",
+  "payment_note": "Pay by e-Transfer to hightidebjj@gmail.com with the password \"tournament\". Registration isn't accepted until payment is received."
+}

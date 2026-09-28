@@ -2,7 +2,7 @@
 /**
  * Build script: generates dist/ from content/*.json + template files.
  *
- * - Injects generated HTML into index.html between <!-- BUILD:name --> markers
+ * - Injects generated HTML (incl. the optional event banner + section) into index.html between <!-- BUILD:name --> markers
  * - Regenerates the Schedule / Membership / Programs sections of llms.txt
  * - Regenerates the JSON-LD structured data block
  * - Validates all content first; exits non-zero (no deploy) on any error
@@ -19,6 +19,8 @@ const DIST = path.join(ROOT, "dist");
 const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const PRICE_RE = /^\d+(\.\d{2})?$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const errors = [];
 const fail = (file, msg) => errors.push(`content/${file} → ${msg}`);
@@ -40,6 +42,7 @@ const schedule = loadJson("schedule.json");
 const memberships = loadJson("memberships.json");
 const team = loadJson("team.json");
 const site = loadJson("site.json");
+const event = loadJson("event.json");
 
 // ---------- validate ----------
 
@@ -130,6 +133,33 @@ if (team) {
   }
 }
 
+if (event && event.show === true) {
+  for (const k of ["title", "date", "button_text", "heading", "venue", "intro"]) {
+    if (!nonEmpty(event[k])) fail("event.json", `${k} is empty (turn off "Show event" to hide it)`);
+  }
+  if (nonEmpty(event.date) && (!DATE_RE.test(event.date) || Number.isNaN(Date.parse(event.date)))) {
+    fail("event.json", `date: "${event.date}" must be a date like 2026-11-15`);
+  }
+  (event.facts || []).forEach((f, i) => {
+    if (!nonEmpty(f.label) || !nonEmpty(f.text)) fail("event.json", `facts[${i}] needs both a label and text`);
+  });
+  (event.rules || []).forEach((r, i) => {
+    if (!nonEmpty(r)) fail("event.json", `rules[${i}] is empty`);
+  });
+  (event.fees || []).forEach((f, i) => {
+    if (!nonEmpty(f.name)) fail("event.json", `fees[${i}].name is empty`);
+    if (!DATE_RE.test(f.ends || "")) fail("event.json", `fees[${i}].ends: "${f.ends}" must be a date like 2026-10-02`);
+    for (const k of ["kids", "adults"]) {
+      if (!PRICE_RE.test(f[k] || "")) fail("event.json", `fees[${i}].${k}: "${f[k]}" must be a number like 55 (no $)`);
+    }
+    if (i > 0 && DATE_RE.test(f.ends || "") && f.ends <= event.fees[i - 1].ends) {
+      fail("event.json", `fees[${i}].ends must be after the previous tier's end date`);
+    }
+  });
+  if (!EMAIL_RE.test(event.register_email || "")) fail("event.json", `register_email: "${event.register_email}" is not a valid email`);
+  checkStringList("event.json", "register_fields", event.register_fields, 1);
+}
+
 if (site) {
   checkStringList("site.json", "seo_offers", site.seo_offers, 1);
   checkStringList("site.json", "llms_program_lines", site.llms_program_lines, 1);
@@ -144,6 +174,7 @@ if (errors.length > 0) {
 // ---------- helpers ----------
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const escAttr = (s) => esc(s).replace(/"/g, "&quot;");
 
 function timeParts(hm) {
   const [H, M] = hm.split(":").map(Number);
@@ -174,6 +205,123 @@ function replaceBetween(html, name, block, file) {
 }
 
 // ---------- HTML generators ----------
+
+// Today's date (YYYY-MM-DD) at the gym, for hiding past events
+const gymToday = () => new Intl.DateTimeFormat("en-CA", { timeZone: "America/St_Johns" }).format(new Date());
+
+const longDate = (ymd, opts) => new Date(`${ymd}T00:00:00Z`).toLocaleDateString("en-CA", { timeZone: "UTC", ...opts });
+
+// Event is shown only when switched on and its date hasn't passed
+function eventActive() {
+  if (!event || event.show !== true) return false;
+  if (event.date < gymToday()) {
+    console.warn(`note: event date ${event.date} has passed — banner and section not shown`);
+    return false;
+  }
+  return true;
+}
+
+function genEventBanner(active) {
+  if (!active) return "";
+  const when = longDate(event.date, { weekday: "long", month: "long", day: "numeric" });
+  const details = [when, nonEmpty(event.details) ? event.details.trim() : ""].filter(Boolean).join(" · ");
+  const label = nonEmpty(event.label) ? `\n        <p class="event-banner__label">${esc(event.label.trim())}</p>` : "";
+  return `    <aside class="event-banner" aria-label="Upcoming event" data-event-date="${event.date}">
+      <div class="container event-banner__inner">${label}
+        <p class="event-banner__text"><strong>${esc(event.title.trim())}</strong> <span>${esc(details)}</span></p>
+        <a class="event-banner__cta" href="#event">${esc(event.button_text.trim())}</a>
+      </div>
+    </aside>`;
+}
+
+function genEventSection(active) {
+  if (!active) return "";
+  const when = longDate(event.date, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const fees = event.fees || [];
+  const closes = fees.length > 0 ? fees[fees.length - 1].ends : "";
+
+  const facts = (event.facts || [])
+    .map((f) => `                <div>
+                  <dt>${esc(f.label)}</dt>
+                  <dd>${esc(f.text)}</dd>
+                </div>`)
+    .join("\n");
+  const rules = (event.rules || []).length
+    ? `
+              <h3>Match rules</h3>
+              <ul class="event__rules">
+${event.rules.map((r) => `                <li>${esc(r)}</li>`).join("\n")}
+              </ul>`
+    : "";
+
+  const feeRows = fees
+    .map((f) => `                  <tr data-ends="${f.ends}">
+                    <th scope="row">${esc(f.name)} <span>until ${longDate(f.ends, { month: "short", day: "numeric" })}</span></th>
+                    <td>$${f.kids}</td>
+                    <td>$${f.adults}</td>
+                  </tr>`)
+    .join("\n");
+  const feesNote = nonEmpty(event.fees_note) ? `\n                <p class="event__note">${esc(event.fees_note.trim())}</p>` : "";
+  const feesBlock = fees.length
+    ? `
+              <div class="event__fees-block">
+              <h3>Registration fees</h3>
+              <table class="event__fees">
+                <thead>
+                  <tr>
+                    <th scope="col">Register by</th>
+                    <th scope="col">Kids <span>15 &amp; under</span></th>
+                    <th scope="col">16 &amp; up</th>
+                  </tr>
+                </thead>
+                <tbody>
+${feeRows}
+                </tbody>
+              </table>${feesNote}
+              </div>`
+    : "";
+
+  const email = event.register_email.trim();
+  const reminder = nonEmpty(event.email_reminder) ? `\r\n\r\n${event.email_reminder.trim()}` : "";
+  const body = event.register_fields.map((f) => `${f.trim()}: `).join("\r\n") + reminder;
+  const subject = nonEmpty(event.register_subject) ? event.register_subject.trim() : `${event.title.trim()} registration`;
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const payment = nonEmpty(event.payment_note) ? `\n                <p class="event__note">${esc(event.payment_note.trim())}</p>` : "";
+  const feesPanel = fees.length ? `\n            <div class="event-panel event-panel--fees">${feesBlock}\n            </div>` : "";
+  const logo = nonEmpty(event.logo)
+    ? `\n            <img class="event__logo" src="${escAttr(event.logo.trim())}" alt="High Tide Submission Series logo" width="480" height="403" />`
+    : "";
+  const closesText = closes
+    ? `Registration closes ${longDate(closes, { weekday: "long", month: "long", day: "numeric" })} at 11:59 PM.`
+    : "";
+
+  return `      <section id="event" class="section event" aria-labelledby="event-title"${closes ? ` data-registration-closes="${closes}"` : ""} data-event-date="${event.date}">
+        <div class="container">
+          <header class="section-header">${logo}
+            <p class="event__eyebrow">${esc(when)} · ${esc(event.venue)}</p>
+            <h2 id="event-title">${esc(event.heading)}</h2>
+            <p>${esc(event.intro)}</p>
+          </header>
+          <div class="event__grid">
+            <div class="event-panel">
+              <dl class="event__facts">
+${facts}
+              </dl>${rules}
+            </div>
+${feesPanel}
+            <div class="event-panel event-panel--register">
+              <h3>How to register</h3>
+              <p class="event__closed">Registration is closed. See you on the mats!</p>
+              <div class="event__open">
+                <p>Tap the button to open a pre-filled email to ${esc(email)}, add your details, and send.</p>${payment}
+                <p class="event__deadline">${esc(closesText)}</p>
+                <a class="button primary" href="${escAttr(mailto)}">Email your registration</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>`;
+}
 
 function genPrograms() {
   return programs.programs
@@ -326,6 +474,9 @@ function genLlms(text) {
 
 let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 html = replaceBetween(html, "jsonld", genJsonLd(), "index.html");
+const showEvent = eventActive();
+html = replaceBetween(html, "event", genEventBanner(showEvent), "index.html");
+html = replaceBetween(html, "event-section", genEventSection(showEvent), "index.html");
 html = replaceBetween(html, "programs", genPrograms(), "index.html");
 html = replaceBetween(html, "schedule", genSchedule(), "index.html");
 html = replaceBetween(html, "lead", genLead(), "index.html");
