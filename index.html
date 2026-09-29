@@ -11,6 +11,8 @@
     <meta property="og:title" content="Evolution Martial Arts NL - BJJ & Kickboxing in St. John's" />
     <meta property="og:description" content="Join Evolution Martial Arts NL for Brazilian Jiu-Jitsu, Kickboxing, and functional training in St. John's, Newfoundland. Try a free class today!" />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://evolutionmartialartsnl.com/" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
     <meta property="og:url" content="https://evolutionmartialartsnl.com/" />
     <meta property="og:image" content="https://evolutionmartialartsnl.com/assets/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -27,8 +29,11 @@
     {
       "@context": "https://schema.org",
       "@type": "MartialArtsSchool",
+      "@id": "https://evolutionmartialartsnl.com/#school",
       "name": "Evolution Martial Arts NL",
       "url": "https://evolutionmartialartsnl.com",
+      "image": "https://evolutionmartialartsnl.com/assets/og-image.jpg",
+      "logo": "https://evolutionmartialartsnl.com/assets/logo-512.jpg",
       "telephone": "+17093306894",
       "email": "evolutionmartialartsnl@gmail.com",
       "address": {
@@ -44,24 +49,307 @@
         "latitude": 47.5610323,
         "longitude": -52.7481653
       },
+      "areaServed": "St. John's, Newfoundland and Labrador",
       "foundingDate": "2022",
-      "description": "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu, Kickboxing, and functional training in St. John's, Newfoundland for all levels.",
+      "founder": {
+        "@type": "Person",
+        "name": "Dru Hillyard",
+        "jobTitle": "Lead Instructor"
+      },
+      "description": "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu (Gi and No-Gi), Kickboxing, Kids Jiu-Jitsu, Kids Wrestling, and Women's classes in St. John's, Newfoundland for all levels. First class is free.",
+      "priceRange": "$63.25–$172.50 CAD",
+      "currenciesAccepted": "CAD",
       "sameAs": [
         "https://www.instagram.com/evolutionmartialartsnl/"
       ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Programs",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gi Jiu-Jitsu Adult" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "No-Gi Jiu-Jitsu Adult" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kickboxing" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kids Jiu-Jitsu" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kids Wrestling" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Women's Jiu-Jitsu" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Women's Kickboxing" } }
-        ]
-      }
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Monday",
+          "opens": "06:30",
+          "closes": "07:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Monday",
+          "opens": "19:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Tuesday",
+          "opens": "18:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Wednesday",
+          "opens": "17:30",
+          "closes": "19:15"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Thursday",
+          "opens": "18:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Friday",
+          "opens": "18:00",
+          "closes": "18:45"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Sunday",
+          "opens": "11:00",
+          "closes": "13:00"
+        }
+      ],
+      "hasOfferCatalog": [
+        {
+          "@type": "OfferCatalog",
+          "name": "Programs",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Gi Jiu-Jitsu Adult"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "No-Gi Jiu-Jitsu Adult"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Kickboxing"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Kids Jiu-Jitsu"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Kids Wrestling"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Women's Jiu-Jitsu"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Women's Kickboxing"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Memberships (tax included)",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Unlimited Grappling Training",
+              "description": "Train in every gi and no-gi class each week, with daily open mat access and member-only seminars.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "138",
+                "priceCurrency": "CAD",
+                "unitText": "month",
+                "valueAddedTaxIncluded": true
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Unlimited Grappling & Striking",
+              "description": "Access all grappling and striking sessions, get competition prep support, and add conditioning and mobility when you need it.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "172.50",
+                "priceCurrency": "CAD",
+                "unitText": "month",
+                "valueAddedTaxIncluded": true
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "2 Classes Per Week",
+              "description": "Pick any two weekly classes to focus your training, receive targeted technical coaching, and enjoy open mat on your training days.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "80.50",
+                "priceCurrency": "CAD",
+                "unitText": "month",
+                "valueAddedTaxIncluded": true
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Women's Only All Skills",
+              "description": "Join a weekly women-led BJJ class that welcomes every experience level and builds confidence through supportive drilling.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "63.25",
+                "priceCurrency": "CAD",
+                "unitText": "month",
+                "valueAddedTaxIncluded": true
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Kids Jiu Jitsu",
+              "description": "Enroll in one structured youth session each week that develops focus, discipline, and success in a small class environment.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "74.75",
+                "priceCurrency": "CAD",
+                "unitText": "month",
+                "valueAddedTaxIncluded": true
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Women's Kickboxing",
+              "description": "The same Dutch-style kickboxing technique as our co-ed class, taught by a female instructor in a women's-only environment. Classes welcome every fitness level and deliver a serious sweat.",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "138",
+                "priceCurrency": "CAD",
+                "unitText": "6-week program",
+                "valueAddedTaxIncluded": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "High Tide Submission Series: Gi Tournament",
+      "description": "High Tide is back with a bigger venue, more mat space for a shorter day, more activities for kids, and the same cash and prizes you've come to love. Every competitor gets a free registration kit.",
+      "startDate": "2026-11-15",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "url": "https://evolutionmartialartsnl.com/#event",
+      "location": {
+        "@type": "Place",
+        "name": "Holiday Inn St. John's Conference Centre",
+        "address": "180 Portugal Cove Rd, St. John's, NL A1B 2N2"
+      },
+      "image": "https://evolutionmartialartsnl.com/assets/img/high-tide-logo.webp",
+      "organizer": {
+        "@type": "Organization",
+        "name": "High Tide Submission Series",
+        "url": "https://www.instagram.com/hightidesubmissionseries/"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Early bird registration, Kids (15 & under), per division",
+          "price": "55",
+          "priceCurrency": "CAD",
+          "validThrough": "2026-10-02",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Early bird registration, High school & adult (16+), per division",
+          "price": "65",
+          "priceCurrency": "CAD",
+          "validThrough": "2026-10-02",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Regular registration, Kids (15 & under), per division",
+          "price": "65",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-03",
+          "validThrough": "2026-10-16",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Regular registration, High school & adult (16+), per division",
+          "price": "75",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-03",
+          "validThrough": "2026-10-16",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Regular registration, Kids (15 & under), per division",
+          "price": "75",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-17",
+          "validThrough": "2026-10-30",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Regular registration, High school & adult (16+), per division",
+          "price": "85",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-17",
+          "validThrough": "2026-10-30",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Late registration, Kids (15 & under), per division",
+          "price": "85",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-31",
+          "validThrough": "2026-11-12",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Late registration, High school & adult (16+), per division",
+          "price": "100",
+          "priceCurrency": "CAD",
+          "validFrom": "2026-10-31",
+          "validThrough": "2026-11-12",
+          "url": "https://evolutionmartialartsnl.com/#event",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
     }
     </script>
     <!-- /BUILD:jsonld -->
@@ -329,11 +617,13 @@
               <h3>Monday</h3>
               <ul>
                 <li class="schedule-class">
+                  <time datetime="06:30">6:30 – 7:30 AM</time>
+                  <span>Adult Gi</span>
+                </li>
+                <li class="schedule-class">
                   <time datetime="19:00">7 – 8 PM</time>
                   <span>Adult Gi</span>
                 </li>
-
-
               </ul>
             </article>
             <article class="schedule-day" role="listitem">
@@ -347,7 +637,6 @@
                   <time datetime="19:00">7 – 8 PM</time>
                   <span>Adult No-Gi</span>
                 </li>
-
               </ul>
             </article>
             <article class="schedule-day" role="listitem">
@@ -361,7 +650,6 @@
                   <time datetime="18:30">6:30 – 7:15 PM</time>
                   <span>Kids Ages 9–14</span>
                 </li>
-
               </ul>
             </article>
             <article class="schedule-day" role="listitem">
@@ -375,7 +663,6 @@
                   <time datetime="19:00">7 – 8 PM</time>
                   <span>Adult No-Gi</span>
                 </li>
-
               </ul>
             </article>
             <article class="schedule-day" role="listitem">
@@ -385,7 +672,6 @@
                   <time datetime="18:00">6 – 6:45 PM</time>
                   <span>Kids Wrestling (10–16)</span>
                 </li>
-
               </ul>
             </article>
             <article class="schedule-day" role="listitem">
@@ -420,7 +706,6 @@
                   <time datetime="12:00">12 PM – 1 PM</time>
                   <span>Open Mat</span>
                 </li>
-
               </ul>
             </article>
             <!-- /BUILD:schedule -->

@@ -3,7 +3,8 @@
  * Build script: generates dist/ from content/*.json + template files.
  *
  * - Injects generated HTML (incl. the optional event banner + section) into index.html between <!-- BUILD:name --> markers
- * - Regenerates the Schedule / Membership / Programs sections of llms.txt
+ * - Regenerates the Schedule / Membership / Programs / Upcoming Events sections of llms.txt
+ * - Writes sitemap.xml; copies robots.txt
  * - Regenerates the JSON-LD structured data block
  * - Validates all content first; exits non-zero (no deploy) on any error
  *
@@ -410,49 +411,141 @@ ${features}
     .join("\n");
 }
 
-function genJsonLd() {
-  const offers = site.seo_offers
-    .map((name) => `          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": ${JSON.stringify(name)} } }`)
-    .join(",\n");
-  const block = `    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MartialArtsSchool",
-      "name": "Evolution Martial Arts NL",
-      "url": "https://evolutionmartialartsnl.com",
-      "telephone": "+17093306894",
-      "email": "evolutionmartialartsnl@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "210 Kenmount Rd",
-        "addressLocality": "St. John's",
-        "addressRegion": "NL",
-        "postalCode": "A1B 3R2",
-        "addressCountry": "CA"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 47.5610323,
-        "longitude": -52.7481653
-      },
-      "foundingDate": "2022",
-      "description": "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu, Kickboxing, and functional training in St. John's, Newfoundland for all levels.",
-      "sameAs": [
-        "https://www.instagram.com/evolutionmartialartsnl/"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Programs",
-        "itemListElement": [
-${offers}
-        ]
+const SITE_URL = "https://evolutionmartialartsnl.com";
+
+// Merge back-to-back classes (gap of 15 min or less) into opening-hours blocks per day
+function openingHours() {
+  const specs = [];
+  for (const day of DAYS) {
+    const classes = [...schedule[day]].sort((x, y) => x.start.localeCompare(y.start));
+    let block = null;
+    const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
+    for (const c of classes) {
+      if (block && toMin(c.start) - toMin(block.closes) <= 15) {
+        if (c.end > block.closes) block.closes = c.end;
+      } else {
+        if (block) specs.push(block);
+        block = { opens: c.start, closes: c.end };
       }
     }
-    </script>`;
-  // self-check: the emitted JSON must parse
-  const inner = block.replace(/^\s*<script[^>]*>/, "").replace(/<\/script>\s*$/, "");
-  JSON.parse(inner);
-  return block;
+    if (block) specs.push(block);
+    specs.forEach((sp) => {
+      if (!sp.dayOfWeek) sp.dayOfWeek = `https://schema.org/${day.charAt(0).toUpperCase() + day.slice(1)}`;
+    });
+  }
+  return specs.map((sp) => ({ "@type": "OpeningHoursSpecification", dayOfWeek: sp.dayOfWeek, opens: sp.opens, closes: sp.closes }));
+}
+
+function genSchoolLd() {
+  const byPrice = [...memberships.plans].sort((x, y) => Number(x.price) - Number(y.price));
+  return {
+    "@context": "https://schema.org",
+    "@type": "MartialArtsSchool",
+    "@id": `${SITE_URL}/#school`,
+    name: "Evolution Martial Arts NL",
+    url: SITE_URL,
+    image: `${SITE_URL}/assets/og-image.jpg`,
+    logo: `${SITE_URL}/assets/logo-512.jpg`,
+    telephone: "+17093306894",
+    email: "evolutionmartialartsnl@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "210 Kenmount Rd",
+      addressLocality: "St. John's",
+      addressRegion: "NL",
+      postalCode: "A1B 3R2",
+      addressCountry: "CA",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 47.5610323, longitude: -52.7481653 },
+    areaServed: "St. John's, Newfoundland and Labrador",
+    foundingDate: "2022",
+    founder: { "@type": "Person", name: team.lead_instructor.name, jobTitle: "Lead Instructor" },
+    description:
+      "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu (Gi and No-Gi), Kickboxing, Kids Jiu-Jitsu, Kids Wrestling, and Women's classes in St. John's, Newfoundland for all levels. First class is free.",
+    priceRange: `$${byPrice[0].price}–$${byPrice[byPrice.length - 1].price} CAD`,
+    currenciesAccepted: "CAD",
+    sameAs: ["https://www.instagram.com/evolutionmartialartsnl/"],
+    openingHoursSpecification: openingHours(),
+    hasOfferCatalog: [
+      {
+        "@type": "OfferCatalog",
+        name: "Programs",
+        itemListElement: site.seo_offers.map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Memberships (tax included)",
+        itemListElement: memberships.plans.map((p) => ({
+          "@type": "Offer",
+          name: p.name,
+          description: p.description,
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: p.price,
+            priceCurrency: "CAD",
+            unitText: p.period.replace(/^\//, ""),
+            valueAddedTaxIncluded: true,
+          },
+        })),
+      },
+    ],
+  };
+}
+
+function genEventLd() {
+  const handles = (event.instagram || []).map((h) => String(h).trim().replace(/^@/, ""));
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    name: event.heading.trim(),
+    description: event.intro.trim(),
+    startDate: event.date,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    url: `${SITE_URL}/#event`,
+    location: {
+      "@type": "Place",
+      name: event.venue.trim(),
+      ...(nonEmpty(event.venue_address) ? { address: event.venue_address.trim() } : {}),
+    },
+  };
+  if (nonEmpty(event.logo)) ld.image = `${SITE_URL}/${event.logo.trim().replace(/^\//, "")}`;
+  if (nonEmpty(event.organizer)) {
+    ld.organizer = { "@type": "Organization", name: event.organizer.trim() };
+    if (handles[0]) ld.organizer.url = `https://www.instagram.com/${handles[0]}/`;
+  }
+  const fees = event.fees || [];
+  if (fees.length) {
+    ld.offers = fees.flatMap((f, i) => {
+      // each tier starts the day after the previous tier's deadline
+      const validFrom = i > 0 ? new Date(Date.parse(`${fees[i - 1].ends}T00:00:00Z`) + 864e5).toISOString().slice(0, 10) : undefined;
+      return [
+        ["Kids (15 & under)", f.kids],
+        ["High school & adult (16+)", f.adults],
+      ].map(([who, price]) => ({
+        "@type": "Offer",
+        name: `${f.name} registration, ${who}, per division`,
+        price,
+        priceCurrency: "CAD",
+        ...(validFrom ? { validFrom } : {}),
+        validThrough: f.ends,
+        url: `${SITE_URL}/#event`,
+        availability: "https://schema.org/InStock",
+      }));
+    });
+  }
+  return ld;
+}
+
+function genJsonLd(active) {
+  const docs = [genSchoolLd(), ...(active ? [genEventLd()] : [])];
+  return docs
+    .map((d) => {
+      // "</" inside a script block would end it early
+      const json = JSON.stringify(d, null, 2).replace(/<\//g, "<\\/");
+      return `    <script type="application/ld+json">\n${json.replace(/^/gm, "    ")}\n    </script>`;
+    })
+    .join("\n");
 }
 
 // ---------- llms.txt generators ----------
@@ -462,6 +555,28 @@ function replaceLlmsSection(text, heading, body) {
   if (!re.test(text)) throw new Error(`llms.txt: section "## ${heading}" not found`);
   // replacer function so "$" in content (prices) is never treated as a backreference
   return text.replace(re, (m, head) => `${head}\n${body}\n`);
+}
+
+function genLlmsEvents() {
+  if (!showEvent) return "No upcoming events are currently listed.";
+  const when = longDate(event.date, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const where = [event.venue, event.venue_address].filter(nonEmpty).map((v) => v.trim()).join(", ");
+  const lines = [`### ${event.heading.trim()}`, "", `- Date: ${when}`, `- Location: ${where}`];
+  if (nonEmpty(event.organizer)) lines.push(`- Organizer: ${event.organizer.trim()}`);
+  (event.facts || []).forEach((f) => lines.push(`- ${f.label}: ${f.text}`));
+  if ((event.rules || []).length) lines.push(`- Match rules: ${event.rules.map((r) => r.trim().replace(/\.$/, "")).join("; ")}`);
+  const fees = event.fees || [];
+  if (fees.length) {
+    lines.push("- Registration fees (per division, CAD; kids 15 & under / ages 16+):");
+    fees.forEach((f) => lines.push(`  - ${f.name}, until ${longDate(f.ends, { month: "long", day: "numeric" })}: $${f.kids} / $${f.adults}`));
+    lines.push(`- Registration closes ${longDate(fees[fees.length - 1].ends, { month: "long", day: "numeric" })} at 11:59 PM`);
+  }
+  lines.push(`- How to register: email ${event.register_email.trim()} with: ${event.register_fields.join("; ")}`);
+  if (nonEmpty(event.payment_note)) lines.push(`- Payment: ${event.payment_note.trim()}`);
+  const handles = (event.instagram || []).map((h) => `@${String(h).trim().replace(/^@/, "")}`);
+  if (handles.length) lines.push(`- Instagram: ${handles.join(", ")}`);
+  lines.push(`- Details: ${SITE_URL}/#event`);
+  return lines.join("\n");
 }
 
 function genLlms(text) {
@@ -483,14 +598,15 @@ function genLlms(text) {
   text = replaceLlmsSection(text, "Programs", programsBody);
   text = replaceLlmsSection(text, "Schedule", scheduleBody);
   text = replaceLlmsSection(text, "Membership Plans", plansBody);
+  text = replaceLlmsSection(text, "Upcoming Events", genLlmsEvents());
   return text;
 }
 
 // ---------- build ----------
 
 let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-html = replaceBetween(html, "jsonld", genJsonLd(), "index.html");
 const showEvent = eventActive();
+html = replaceBetween(html, "jsonld", genJsonLd(showEvent), "index.html");
 html = replaceBetween(html, "event", genEventBanner(showEvent), "index.html");
 html = replaceBetween(html, "event-section", genEventSection(showEvent), "index.html");
 html = replaceBetween(html, "programs", genPrograms(), "index.html");
@@ -505,7 +621,18 @@ fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 fs.writeFileSync(path.join(DIST, "index.html"), html);
 fs.writeFileSync(path.join(DIST, "llms.txt"), llms);
-for (const f of ["404.html", "favicon.svg", "CNAME"]) {
+fs.writeFileSync(
+  path.join(DIST, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${SITE_URL}/</loc>
+    <lastmod>${gymToday()}</lastmod>
+  </url>
+</urlset>
+`
+);
+for (const f of ["404.html", "favicon.svg", "CNAME", "robots.txt"]) {
   fs.copyFileSync(path.join(ROOT, f), path.join(DIST, f));
 }
 fs.cpSync(path.join(ROOT, "assets"), path.join(DIST, "assets"), { recursive: true });
