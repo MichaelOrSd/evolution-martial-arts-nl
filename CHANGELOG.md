@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-29
+
+- Added `image` (`og-image.jpg`) and `logo` (new square `assets/logo-512.jpg`) to the JSON-LD block so Google search results show the gym logo instead of the old text thumbnail
+
+### AI / agent discoverability
+- `robots.txt` (new): allows all crawlers and explicitly allows AI search/assistant bots (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended, etc.); points to the sitemap and `llms.txt`
+- `sitemap.xml` generated at build time
+- `<link rel="canonical">` and a `<link rel="alternate" type="text/plain">` pointer to `llms.txt`
+- JSON-LD now generated from objects: `@id`, founder, area served, price range, membership prices (CAD, tax-in), and opening hours derived from the class schedule
+- `SportsEvent` JSON-LD for the active event (date, venue + street address, organizer, every fee tier as an Offer with valid dates)
+- `llms.txt` gains a generated "Upcoming Events" section (full tournament details)
+- `content/event.json`: `venue_address` and `organizer` fields (also in the CMS)
+
 ## 2026-09-28
 
 ### High Tide Gi Tournament (event banner + section)

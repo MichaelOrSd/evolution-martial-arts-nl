@@ -22,7 +22,7 @@ python3 -m http.server 8080 --directory dist
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/deploy.yml`: it runs `node scripts/build.js` (zero dependencies) and deploys `dist/` via GitHub Pages Actions. The build injects `content/*.json` into `index.html` (between `<!-- BUILD:* -->` markers), regenerates the Programs/Schedule/Membership sections of `llms.txt`, and regenerates the JSON-LD block. If content validation fails, the deploy is skipped (previous version stays live) and an issue is opened automatically. Custom domain configured via `CNAME` file (copied into `dist/`). DNS is on Route 53 (Cloudflare account exists but nameservers were never migrated).
+Pushes to `main` trigger `.github/workflows/deploy.yml`: it runs `node scripts/build.js` (zero dependencies) and deploys `dist/` via GitHub Pages Actions. The build injects `content/*.json` into `index.html` (between `<!-- BUILD:* -->` markers), regenerates the Programs/Schedule/Membership/Upcoming Events sections of `llms.txt`, regenerates the JSON-LD block (school + active event), and writes `sitemap.xml` (`robots.txt` is static, copied as-is). If content validation fails, the deploy is skipped (previous version stays live) and an issue is opened automatically. Custom domain configured via `CNAME` file (copied into `dist/`). DNS is on Route 53 (Cloudflare account exists but nameservers were never migrated).
 
 ## Client Content Editing (Pages CMS)
 
@@ -52,7 +52,7 @@ Single-page site (`index.html`) with sections: optional Event banner (above head
 - **BEM-inspired CSS naming** for components (e.g., `.card__header`, `.pricing-card--highlight`, `.carousel-arrow--prev`)
 - **Mobile-first responsive design** with primary breakpoint at 960px; carousel breakpoints at 600px and 1024px
 - **Accessibility:** semantic HTML, ARIA labels, `aria-expanded` on nav toggle, `.sr-only` class, `prefers-reduced-motion` respected
-- **Images hosted externally** on AWS S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (link-share preview) and `assets/img/high-tide-logo.webp` (event logo)
+- **Images hosted externally** on AWS S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (link-share preview + JSON-LD `image`), `assets/logo-512.jpg` (JSON-LD `logo`) and `assets/img/high-tide-logo.webp` (event logo)
 - **Event banner/section** (`content/event.json`): hidden when `show` is false or `date` has passed. `site.js` repeats the date checks in the browser (hide past events, drop expired fee tiers, mark registration closed) since the build only runs on push. Uses `--tide-*` colour tokens, not the gym gold
 
 ## When Editing

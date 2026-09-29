@@ -169,7 +169,7 @@ Run through after major updates or pushes to `main`:
 - Content (programs/schedule/belts/pricing) lives in `content/*.json` — never edit the generated `BUILD` zones of `index.html` or the mirrored llms.txt sections directly. `node scripts/build.js` builds to `dist/`. Renaming a JSON key means updating `.pages.yml` + `scripts/build.js` together.
 - Pages CMS: app.pagescms.org, GitHub App scoped to this repo, owners share one login via the gym email. Client guide: `EDITING.md`.
 - Edit source CSS/JS files, then regenerate `.min.*` versions. No build tool — do it manually. HTML loads only minified files.
-- Images hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (share preview) and `assets/img/high-tide-logo.webp` (event logo).
+- Images hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (share preview + JSON-LD image), `assets/logo-512.jpg` (JSON-LD logo) and `assets/img/high-tide-logo.webp` (event logo).
 - Event banner/section: `content/event.json` ("Event / Tournament" in the CMS). Visibility is date-driven in both `scripts/build.js` (at deploy) and `site.js` (in the browser), so it disappears on time even without a redeploy. Reuse for future events by editing the JSON.
 - Cloudflare account exists but nameservers were never switched from Route 53. This blocks email routing and CDN features.
 - EmailJS free tier: 200 requests/month, resets Apr 17. 500 emails/day limit.
