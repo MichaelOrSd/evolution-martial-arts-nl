@@ -20,6 +20,7 @@ const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const PRICE_RE = /^\d+(\.\d{2})?$/;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const HANDLE_RE = /^[A-Za-z0-9._]{1,30}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const errors = [];
@@ -156,6 +157,9 @@ if (event && event.show === true) {
       fail("event.json", `fees[${i}].ends must be after the previous tier's end date`);
     }
   });
+  (event.instagram || []).forEach((h, i) => {
+    if (!HANDLE_RE.test(String(h).replace(/^@/, ""))) fail("event.json", `instagram[${i}]: "${h}" is not a valid Instagram handle`);
+  });
   if (!EMAIL_RE.test(event.register_email || "")) fail("event.json", `register_email: "${event.register_email}" is not a valid email`);
   checkStringList("event.json", "register_fields", event.register_fields, 1);
 }
@@ -291,6 +295,18 @@ ${feeRows}
   const logo = nonEmpty(event.logo)
     ? `\n            <img class="event__logo" src="${escAttr(event.logo.trim())}" alt="High Tide Submission Series logo" width="480" height="403" />`
     : "";
+  const handles = (event.instagram || []).map((h) => String(h).trim().replace(/^@/, "")).filter(Boolean);
+  const social = handles.length
+    ? `
+            <div class="event__social">
+              <p>Follow for updates</p>
+              <ul>
+${handles
+  .map((h) => `                <li><a href="https://www.instagram.com/${h}/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@${h}<span class="sr-only"> on Instagram (opens in a new tab)</span></a></li>`)
+  .join("\n")}
+              </ul>
+            </div>`
+    : "";
   const closesText = closes
     ? `Registration closes ${longDate(closes, { weekday: "long", month: "long", day: "numeric" })} at 11:59 PM.`
     : "";
@@ -300,7 +316,7 @@ ${feeRows}
           <header class="section-header">${logo}
             <p class="event__eyebrow">${esc(when)} · ${esc(event.venue)}</p>
             <h2 id="event-title">${esc(event.heading)}</h2>
-            <p>${esc(event.intro)}</p>
+            <p>${esc(event.intro)}</p>${social}
           </header>
           <div class="event__grid">
             <div class="event-panel">

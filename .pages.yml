@@ -146,6 +146,11 @@ content:
         label: Intro
         type: text
         required: true
+      - name: instagram
+        label: Instagram accounts to follow
+        type: string
+        list: true
+        description: 'Handles only, without the @, e.g. "hightidesubmissionseries"'
       - name: facts
         label: Key info
         type: object
