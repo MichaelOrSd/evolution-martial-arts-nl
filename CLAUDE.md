@@ -26,13 +26,13 @@ Pushes to `main` trigger `.github/workflows/deploy.yml`: it runs `node scripts/b
 
 ## Client Content Editing (Pages CMS)
 
-Dru & Ashley edit programs, schedule, belt roster, and pricing themselves via https://app.pagescms.org (invited by email — no GitHub accounts). `.pages.yml` defines the editing forms; `EDITING.md` is their cheat sheet. Their saves commit to `main` and auto-deploy in ~1–2 minutes.
+Dru & Ashley edit programs, schedule, belt roster, pricing, and the event banner themselves via https://app.pagescms.org (invited by email — no GitHub accounts). `.pages.yml` defines the editing forms; `EDITING.md` is their cheat sheet. Their saves commit to `main` and auto-deploy in ~1–2 minutes.
 
-**IMPORTANT:** Content for programs, schedule, team/belts, and memberships lives in `content/*.json` — edit those files, never the generated zones of `index.html` (between `<!-- BUILD:* -->` markers) or the mirrored sections of `llms.txt`. The committed HTML between markers is a fallback snapshot and may lag behind live content. `content/site.json` holds dev-curated SEO data (JSON-LD offers, llms.txt program lines) and is hidden from the CMS. If you rename a JSON key, update `.pages.yml` and `scripts/build.js` together.
+**IMPORTANT:** Content for programs, schedule, team/belts, memberships, and the event banner/section lives in `content/*.json` — edit those files, never the generated zones of `index.html` (between `<!-- BUILD:* -->` markers) or the mirrored sections of `llms.txt`. The committed HTML between markers is a fallback snapshot and may lag behind live content. `content/site.json` holds dev-curated SEO data (JSON-LD offers, llms.txt program lines) and is hidden from the CMS. If you rename a JSON key, update `.pages.yml` and `scripts/build.js` together.
 
 ## Architecture
 
-Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule, Team, Membership carousel, Contact form, Footer. Programs, schedule, team/belts, and membership content lives in `content/*.json` and is injected into `index.html` at deploy time by `scripts/build.js` (see Client Content Editing below); everything else is authored directly in the HTML.
+Single-page site (`index.html`) with sections: optional Event banner (above header), Hero, optional Event section, Programs carousel, Schedule, Team, Membership carousel, Contact form, Footer. Programs, schedule, team/belts, membership, and event content lives in `content/*.json` and is injected into `index.html` at deploy time by `scripts/build.js` (see Client Content Editing below); everything else is authored directly in the HTML.
 
 **CSS** (`assets/css/`): Two stylesheets — `site.css` (main layout/design system) and `programs-carousel.css` (carousel component). Each has a `.min.css` production version. Production HTML references the minified versions.
 
@@ -52,7 +52,8 @@ Single-page site (`index.html`) with sections: Hero, Programs carousel, Schedule
 - **BEM-inspired CSS naming** for components (e.g., `.card__header`, `.pricing-card--highlight`, `.carousel-arrow--prev`)
 - **Mobile-first responsive design** with primary breakpoint at 960px; carousel breakpoints at 600px and 1024px
 - **Accessibility:** semantic HTML, ARIA labels, `aria-expanded` on nav toggle, `.sr-only` class, `prefers-reduced-motion` respected
-- **Images hosted externally** on AWS S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo
+- **Images hosted externally** on AWS S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (link-share preview) and `assets/img/high-tide-logo.webp` (event logo)
+- **Event banner/section** (`content/event.json`): hidden when `show` is false or `date` has passed. `site.js` repeats the date checks in the browser (hide past events, drop expired fee tiers, mark registration closed) since the build only runs on push. Uses `--tide-*` colour tokens, not the gym gold
 
 ## When Editing
 

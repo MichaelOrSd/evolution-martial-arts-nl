@@ -18,11 +18,13 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - EmailJS: Service `service_uokvg25`, Template `template_oa28y43`, Public Key `ZmnXlTrec0ZBUsiNI`
 - No analytics installed
 - Phone: (709) 330-6894 with click-to-call
-- Schedule: 7 days/week (Mon–Sun), displayed in 4-column grid with CTA card
-- Women's Jiu-Jitsu on break until September 2026 (removed from Friday schedule; plan still listed in Membership)
+- Schedule: 7 days/week (Mon–Sun), displayed in 4-column grid with CTA card. Monday now has a 6:30–7:30 AM Adult Gi (added 2026-09-28)
+- Women's Jiu-Jitsu on break until September 2026 (removed from Friday schedule; plan still listed in Membership) — **now past September: confirm with owners whether it has restarted**
+- **Event banner/section live:** High Tide Gi Tournament, Sun Nov 15, 2026 (`content/event.json`). Auto-hides after the event; registration shows closed after Nov 12
+- Link-share preview image: `assets/og-image.jpg` (gym logo), since 2026-09-28
 - Women's Kickboxing (renamed from "Women's Cardio Kickboxing") runs Saturdays 10–11 AM
 - Design critique baseline (2026-07-23): 23/40 — snapshot in `.impeccable/critique/`
-- Client self-editing via Pages CMS (app.pagescms.org): programs/schedule/belts/pricing live in `content/*.json`, built + deployed by GitHub Actions (`scripts/build.js` → `dist/`). See EDITING.md (client guide) and CLAUDE.md.
+- Client self-editing via Pages CMS (app.pagescms.org): programs/schedule/belts/pricing/events live in `content/*.json`, built + deployed by GitHub Actions (`scripts/build.js` → `dist/`). See EDITING.md (client guide) and CLAUDE.md.
 
 ---
 
@@ -42,6 +44,21 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
   - ~~Belt roster promotions + confirm "Jame Rowe" spelling~~ — resolved 2026-07-30: promotions applied via CMS, "James Rowe" fixed
 - [ ] **Add Ashley's personal email to Contacts** when she replies
 - [ ] **Real photos for the site** (deferred 2026-07-23 — none available yet). Shot list: hero shot of a live class; one photo per program card (kids and women's classes at minimum); gym-interior shot near the contact form. S3 bucket already set up.
+
+### Bug Review 2026-09-28 (not yet fixed)
+
+- [ ] **P0 — Contact form** (same as critique P0 below): if the EmailJS CDN fails, `emailjs.init` throws before the submit listener attaches → native GET submit reloads the page, message lost, name/email end up in the URL
+- [ ] **Sticky header covers section headings** after nav/anchor jumps (no `scroll-margin-top`; heading lands at 56px under a 76px header on mobile). Fixed for `#event` only
+- [ ] **Carousel dot aria-labels wrong** on desktop ("Show programs 7 to 5") — label math assumes page-stepping but the carousel steps one slide (`programs-carousel.js`)
+- [ ] Mobile schedule accordion not keyboard-operable (`role="button"` headings with no `tabindex`/key handler)
+- [ ] Map iframe is `aria-hidden` but still focusable
+- [ ] Women's Jiu-Jitsu still in contact dropdown, "Women's Only All Skills" plan, and `llms.txt` ("on break until September 2026") — confirm status with owners
+- [ ] Minor: hero copy "Brazilian Jiu-Jitsu, and functional conditioning" (stray comma, omits Kickboxing); `site.min.js.map` stale; fade-in observer targets non-existent `.coach/.quote/.schedule-row`
+
+### Event follow-ups
+
+- [ ] Confirm the High Tide logo (`assets/img/high-tide-logo.webp`, from a ChatGPT-generated file) is approved by the High Tide organizers
+- [ ] After Nov 15: banner/section hide themselves — optionally untick "Show event" in the CMS and remove/retire the logo file
 
 ### Site Review Backlog (from 2026-07-23 critique, baseline 23/40)
 
@@ -123,6 +140,10 @@ Living document for tracking the state, changes, roadmap, and notes for the Evol
 - [x] Switched GitHub Pages source to GitHub Actions; live site verified byte-equivalent — 2026-07-30
 - [x] Belt roster updated via CMS: Matthew Peyton → Brown, Owen Warren → Purple (corrected from Brown), "James Rowe" spelling fixed — 2026-07-30
 - [x] Sent owners the editing-system email + quick guide (gym inbox, from ma.oreilly@icloud.com) — 2026-07-30
+- [x] Site bug review (headless Chrome + code read) — findings in backlog above — 2026-09-28
+- [x] High Tide Gi Tournament banner + event section, CMS-editable via `content/event.json`, date-driven auto-hide — 2026-09-28
+- [x] Added Monday 6:30–7:30 AM Adult Gi class — 2026-09-28
+- [x] Link-share preview switched to gym logo (`og-image.jpg`) — 2026-09-28
 
 ---
 
@@ -148,7 +169,8 @@ Run through after major updates or pushes to `main`:
 - Content (programs/schedule/belts/pricing) lives in `content/*.json` — never edit the generated `BUILD` zones of `index.html` or the mirrored llms.txt sections directly. `node scripts/build.js` builds to `dist/`. Renaming a JSON key means updating `.pages.yml` + `scripts/build.js` together.
 - Pages CMS: app.pagescms.org, GitHub App scoped to this repo, owners share one login via the gym email. Client guide: `EDITING.md`.
 - Edit source CSS/JS files, then regenerate `.min.*` versions. No build tool — do it manually. HTML loads only minified files.
-- Images hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo.
+- Images hosted on S3 (`evolutionbjj.s3.ca-central-1.amazonaws.com`), not in the repo — exceptions: `assets/og-image.jpg` (share preview) and `assets/img/high-tide-logo.webp` (event logo).
+- Event banner/section: `content/event.json` ("Event / Tournament" in the CMS). Visibility is date-driven in both `scripts/build.js` (at deploy) and `site.js` (in the browser), so it disappears on time even without a redeploy. Reuse for future events by editing the JSON.
 - Cloudflare account exists but nameservers were never switched from Route 53. This blocks email routing and CDN features.
 - EmailJS free tier: 200 requests/month, resets Apr 17. 500 emails/day limit.
 - EmailJS dashboard: dashboard.emailjs.com (logged in as Dru)

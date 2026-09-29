@@ -1,6 +1,6 @@
 # Evolution Martial Arts NL Static Site
 
-This repository contains the Evolution Martial Arts NL website. The site is pure HTML, CSS, and JavaScript. Client-editable content (programs, schedule, memberships, belt roster) lives in `content/*.json`, edited by the owners through [Pages CMS](https://pagescms.org) and injected into the page by a dependency-free build script at deploy time.
+This repository contains the Evolution Martial Arts NL website. The site is pure HTML, CSS, and JavaScript. Client-editable content (programs, schedule, memberships, belt roster, event banner) lives in `content/*.json`, edited by the owners through [Pages CMS](https://pagescms.org) and injected into the page by a dependency-free build script at deploy time.
 
 ## Project structure
 
