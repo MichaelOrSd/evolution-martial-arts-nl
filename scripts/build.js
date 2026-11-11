@@ -461,7 +461,7 @@ function genSchoolLd() {
     foundingDate: "2022",
     founder: { "@type": "Person", name: team.lead_instructor.name, jobTitle: "Lead Instructor" },
     description:
-      "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu (Gi and No-Gi), Kickboxing, Kids Jiu-Jitsu, Kids Wrestling, and Women's classes in St. John's, Newfoundland for all levels. First class is free.",
+      "Evolution Martial Arts NL offers Brazilian Jiu-Jitsu (Gi and No-Gi), Kickboxing, Kids Jiu-Jitsu, and Women's classes in St. John's, Newfoundland for all levels. First class is free.",
     priceRange: `$${byPrice[0].price}–$${byPrice[byPrice.length - 1].price} CAD`,
     currenciesAccepted: "CAD",
     sameAs: ["https://www.instagram.com/evolutionmartialartsnl/"],
